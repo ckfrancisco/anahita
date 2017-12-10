@@ -54,13 +54,13 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
         return $sets;
     }
 
-    protected function _actionUpdatephotos($context)
+    protected function _actionUpdatedocuments($context)
     /**
-     * Updates the photos in a set given an array of ids.
+     * Updates the documents in a set given an array of ids.
      *
      * @param object POST data
      *
-     * @return object ComPhotosDomainEntitySet
+     * @return object ComDocumentsDomainEntitySet
      */
     {
         $this->execute('adddocument', $context);
@@ -76,11 +76,11 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
     }
 
     /**
-     * Reorders the photos in a set in respect with the order of ids.
+     * Reorders the documents in a set in respect with the order of ids.
      *
      * @param object POST data
      *
-     * @return object ComPhotosDomainEntitySet
+     * @return object ComDocumentsDomainEntitySet
      */
     protected function _actionReorder($context)
     {
@@ -91,9 +91,9 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
     }
 
     /**
-     * Adds a photos to an set.
+     * Adds a documents to an set.
      *
-     * @return object ComPhotosDomainEntitySet
+     * @return object ComDocumentsDomainEntitySet
      *
      * @param object POST data
      */
@@ -106,9 +106,9 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
     }
 
     /**
-     * Removes a list of photos from an set.
+     * Removes a list of documents from an set.
      *
-     * @return object ComPhotosDomainEntitySet
+     * @return object ComDocumentsDomainEntitySet
      *
      * @param object POST data
      */
@@ -127,7 +127,7 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
     }
 
     /**
-     * Fetches a photo object given photo_id as a GET request.
+     * Fetches a document object given document_id as a GET request.
      *
      * @param object POST data
      */

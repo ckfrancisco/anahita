@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Set Photo Edge.
+ * Set document Edge.
  *
  * @category   sparq
  *
@@ -35,7 +35,7 @@ class ComDocumentsDomainEntityEdge extends ComBaseDomainEntityEdge
     }
 
     /**
-     * After adding a relationship, set the photo count for the set;.
+     * After adding a relationship, set the document count for the set;.
      *
      * KCommandContext $context Context
      */
@@ -45,7 +45,7 @@ class ComDocumentsDomainEntityEdge extends ComBaseDomainEntityEdge
     }
 
     /**
-     * After deleting a relationship, set the photo count for the set;.
+     * After deleting a relationship, set the document count for the set;.
      *
      * KCommandContext $context Context
      */

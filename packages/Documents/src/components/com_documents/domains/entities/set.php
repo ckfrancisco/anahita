@@ -11,7 +11,7 @@
  *
  * @link       http://www.GetAnahita.com
  */
-class ComPhotosDomainEntitySet extends ComMediumDomainEntityMedium
+class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
 {
     /**
      * Initializes the default configuration for the object.
@@ -30,7 +30,7 @@ class ComPhotosDomainEntitySet extends ComMediumDomainEntityMedium
                 'hittable',
             ),
             'relationships' => array(   //todo i think relationships needs to be updated
-                'photos' => array('through' => 'edge'),
+                'documents' => array('through' => 'edge'),
             ),
         ));
 
@@ -45,7 +45,7 @@ class ComPhotosDomainEntitySet extends ComMediumDomainEntityMedium
      * @param $size photo size. One of the constan sizes in the ComPhotosDomainEntityPhoto class
      */
 
-     
+
      //todo dont think we need this
 
     // public function getCoverSource($size = ComPhotosDomainEntityPhoto::SIZE_SQUARE)
@@ -93,8 +93,8 @@ class ComPhotosDomainEntitySet extends ComMediumDomainEntityMedium
     {
         $documents = AnHelperArray::getIterator($document);
 
-        foreach ($photos as $photo) {
-            if ($edge = $this->photos->find($photo)) {
+        foreach ($documents as $document) {
+            if ($edge = $this->documents->find($document)) {
                 $edge->delete();
             }
         }
@@ -132,7 +132,7 @@ class ComPhotosDomainEntitySet extends ComMediumDomainEntityMedium
     }
 
     /**
-     * Gets number of photos in this set.
+     * Gets number of documents in this set.
      *
      * @return int value
      */

@@ -18,7 +18,7 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     const DEFAULT_IMAGE = 'default.pdf';
 
     /**
-     * Photo Size Constants.
+     * Documents Size Constants.
      */
      //todo do we need constants for the document
 
@@ -54,13 +54,13 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
 
 
     /**
-     * Synchronizes the photo sets.
+     * Synchronizes the document sets.
      *
      * @return unknown_type
      */
     public function delete()
     {
-        //keep the photos set to use
+        //keep the documents set to use
         //for _afterEntityDelete
         $this->__sets = $this->sets->fetchSet();
         parent::delete();
