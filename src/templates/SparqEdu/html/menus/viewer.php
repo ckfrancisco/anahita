@@ -44,6 +44,15 @@ $components = $this->getService('com:people.template.helper')->viewerMenuLinks($
             </li>
             <? endif; ?>
 
+			<? if (KService::get('koowa:loader')->loadClass('ComOrganizationsDomainEntityOrganization')): ?>
+			<li class="divider"></li>
+            <li>
+            	<a href="<?= @route('option=com_organizations&view=organizations&oid='.$viewer->uniqueAlias.'&filter=following') ?>">
+            	<?= @text('TMPL-MENU-ITEM-VIEWER-ORGANIZATIONS') ?>
+            	</a>
+            </li>
+            <? endif; ?>
+
             <? if ($viewer->admin()): ?>
             <li>
                 <a href="<?= @route('option=com_people&view=people') ?>">
