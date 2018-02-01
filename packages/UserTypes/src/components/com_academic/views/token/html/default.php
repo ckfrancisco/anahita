@@ -6,12 +6,12 @@
 		<form name="token-form" id="token-form" action="<?= @route('view=token') ?>" method="post" class="well">
     		<fieldset>
     			<legend>
-    			    <?= @text('COM-PEOPLE-TOKEN-FORGOT-PASSWORD') ?>
+    			    <?= @text('COM-ACADEMIC-TOKEN-FORGOT-PASSWORD') ?>
     			</legend>
 
 				<div class="control-group">
                     <label class="control-label"  for="person-email">
-                        <?= @text('COM-PEOPLE-TOKEN-FORGOT-PASSWORD-INSTRUCTIONS'); ?>
+                        <?= @text('COM-ACADEMIC-TOKEN-FORGOT-PASSWORD-INSTRUCTIONS'); ?>
                     </label>
                     <div class="controls">
                        <input
@@ -30,7 +30,7 @@
 
     		<div class="form-actions">
                 <button type="submit" class="btn btn-large pull-right">
-                    <?= @text('COM-PEOPLE-ACTION-RESET-PASSWORD'); ?>
+                    <?= @text('COM-ACADEMIC-ACTION-RESET-PASSWORD'); ?>
                 </button>
             </div>
 		</form>

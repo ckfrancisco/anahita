@@ -224,7 +224,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         } else {
             $redirectUrl .= '&view=session';
             $context->response->setHeader('X-User-Activation-Required', true);
-            $this->setMessage(AnTranslator::sprintf('COM-PEOPLE-PROMPT-ACTIVATION-LINK-SENT', $person->name), 'success');
+            $this->setMessage(AnTranslator::sprintf('COM-ACADEMIC-PROMPT-ACTIVATION-LINK-SENT', $person->name), 'success');
         }
 
         $context->response->setRedirect(route($redirectUrl));
@@ -290,10 +290,10 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         $viewer = get_viewer();
 
         if ($viewer->admin()) {
-            $subject = 'COM-PEOPLE-MAIL-SUBJECT-ACCOUNT-CREATED';
+            $subject = 'COM-ACADEMIC-MAIL-SUBJECT-ACCOUNT-CREATED';
             $template = 'account_created';
         } else {
-            $subject = 'COM-PEOPLE-MAIL-SUBJECT-ACCOUNT-ACTIVATE';
+            $subject = 'COM-ACADEMIC-MAIL-SUBJECT-ACCOUNT-ACTIVATE';
             $template = 'account_activate';
         }
 
@@ -318,7 +318,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         $person = $context->result;
 
         $this->mailAdmins(array(
-            'subject' => AnTranslator::sprintf('COM-PEOPLE-MAIL-SUBJECT-NEW-ADMIN', $person->name),
+            'subject' => AnTranslator::sprintf('COM-ACADEMIC-MAIL-SUBJECT-NEW-ADMIN', $person->name),
             'template' => 'new_admin',
         ));
     }
@@ -346,7 +346,7 @@ class ComPeopleControllerPerson extends ComActorsControllerDefault
         $viewer = get_viewer();
 
         if ($viewer->admin() || $viewer->eql($this->getItem())) {
-            $tabs->insert('account', array('label' => AnTranslator::_('COM-PEOPLE-SETTING-TAB-ACCOUNT')));
+            $tabs->insert('account', array('label' => AnTranslator::_('COM-ACADEMIC-SETTING-TAB-ACCOUNT')));
         }
     }
 }

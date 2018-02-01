@@ -3,7 +3,7 @@
 <? if ($viewer->admin()) : ?>
 <div class="btn-toolbar">
     <a href="<?= @route('view=person&layout=add') ?>" class="btn btn-primary">
-        <?= @text('COM-PEOPLE-TOOLBAR-PERSON-NEW') ?>
+        <?= @text('COM-ACADEMIC-TOOLBAR-PERSON-NEW') ?>
     </a>
 </div>
 <? endif; ?>
@@ -13,17 +13,17 @@
     <? if ($viewer->admin()) : ?>
     <?
     $usertypes = array(
-        '' => AnTranslator::_('COM-PEOPLE-FILTER-USERTYPE'),
-        ComPeopleDomainEntityPerson::USERTYPE_REGISTERED => @text('COM-PEOPLE-USERTYPE-REGISTERED'),
-        ComPeopleDomainEntityPerson::USERTYPE_ADMINISTRATOR => @text('COM-PEOPLE-USERTYPE-ADMINISTRATOR'),
-        ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR => @text('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR'),
+        '' => AnTranslator::_('COM-ACADEMIC-FILTER-USERTYPE'),
+        ComPeopleDomainEntityPerson::USERTYPE_REGISTERED => @text('COM-ACADEMIC-USERTYPE-REGISTERED'),
+        ComPeopleDomainEntityPerson::USERTYPE_ADMINISTRATOR => @text('COM-ACADEMIC-USERTYPE-ADMINISTRATOR'),
+        ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR => @text('COM-ACADEMIC-USERTYPE-SUPER-ADMINISTRATOR'),
     );
     $html = $this->getService('com:base.template.helper.html');
     ?>
     <?= $html->select('filter[usertype]', array('options' => $usertypes)) ?>
     <label class="checkbox">
         <input type="checkbox" name="filter[disabled]">
-        <?= @text('COM-PEOPLE-FILTER-DISABLED') ?>
+        <?= @text('COM-ACADEMIC-FILTER-DISABLED') ?>
     </label>
     <? endif; ?>
 </form>

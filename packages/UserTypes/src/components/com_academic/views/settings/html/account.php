@@ -1,6 +1,6 @@
 <? defined('KOOWA') or die; ?>
 
-<h3><?= @text('COM-PEOPLE-PROFILE-EDIT-ACCOUNT-INFORMATION') ?></h3>
+<h3><?= @text('COM-ACADEMIC-PROFILE-EDIT-ACCOUNT-INFORMATION') ?></h3>
 
 <ul>
     <li>
@@ -19,7 +19,7 @@
 </ul>
 
 <? if(isset($_SESSION['reset_password_prompt']) && $_SESSION['reset_password_prompt'] == 1): ?>
-<?= @message(@text('COM-PEOPLE-PROMPT-RESET-PASSWORD'), array('type'=>'alert')) ?>
+<?= @message(@text('COM-ACADEMIC-PROMPT-RESET-PASSWORD'), array('type'=>'alert')) ?>
 <? endif; ?>
 
 <form action="<?= @route($item->getURL(false)) ?>" method="post" autocomplete="off">
@@ -27,7 +27,7 @@
 
 	<div class="control-group">
 		<label class="control-label"  for="person-username">
-		<?= @text('COM-PEOPLE-USERNAME'); ?>:
+		<?= @text('COM-ACADEMIC-USERNAME'); ?>:
 	    </label>
 	    <div class="controls">
 	        <input
@@ -48,7 +48,7 @@
 
 	<div class="control-group">
 		<label class="control-label"  for="person-email">
-			<?= @text('COM-PEOPLE-EMAIL'); ?>:
+			<?= @text('COM-ACADEMIC-EMAIL'); ?>:
 		</label>
 	    <div class="controls">
 	       <input
@@ -68,7 +68,7 @@
 
 	<div class="control-group">
 		<label class="control-label"  for="password">
-	    	<?= @text('COM-PEOPLE-PASSWORD'); ?>:
+	    	<?= @text('COM-ACADEMIC-PASSWORD'); ?>:
 	    </label>
 	    <div class="controls">
 	    	 <?= @helper('password.input') ?>

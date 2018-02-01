@@ -12,11 +12,11 @@
             autocomplete="off"
         >
             <fieldset>
-                <legend><?= @text('COM-PEOPLE-ADD-TITLE') ?></legend>
+                <legend><?= @text('COM-ACADEMIC-ADD-TITLE') ?></legend>
 
                 <div class="control-group">
                     <label class="control-label"  for="person-given-name">
-                        <?= @text('COM-PEOPLE-GIVEN-NAME'); ?>
+                        <?= @text('COM-ACADEMIC-GIVEN-NAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -33,7 +33,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-family-name">
-                        <?= @text('COM-PEOPLE-FAMILY-NAME'); ?>
+                        <?= @text('COM-ACADEMIC-FAMILY-NAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -50,7 +50,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-username">
-                        <?= @text('COM-PEOPLE-USERNAME'); ?>
+                        <?= @text('COM-ACADEMIC-USERNAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -70,7 +70,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-email">
-                        <?= @text('COM-PEOPLE-EMAIL'); ?>
+                        <?= @text('COM-ACADEMIC-EMAIL'); ?>
                     </label>
                     <div class="controls">
                        <input
@@ -90,7 +90,7 @@
 
                 <div class="control-group">
                     <label class="control-label" for="person-usertype">
-                        <?= @text('COM-PEOPLE-USERTYPE'); ?>
+                        <?= @text('COM-ACADEMIC-USERTYPE'); ?>
                     </label>
                     <div class="controls">
                         <?= @helper('usertypes') ?>

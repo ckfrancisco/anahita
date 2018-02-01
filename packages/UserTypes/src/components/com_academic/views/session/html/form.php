@@ -12,12 +12,12 @@
 
     <fieldset>
         <legend>
-            <?= @text('COM-PEOPLE-SESSION-TITLE') ?>
+            <?= @text('COM-ACADEMIC-SESSION-TITLE') ?>
 
             <? if (@service('com:people.controller.person')->permission->isRegistrationOpen()): ?>
             <small>
                 <a class="pull-right" href="<?= @route('option=com_people&view=person&layout=signup'.(($return) ? "&return=$return" : '')) ?>">
-                    <?= @text('COM-PEOPLE-ACTION-CREATE-AN-ACCOUNT')?>
+                    <?= @text('COM-ACADEMIC-ACTION-CREATE-AN-ACCOUNT')?>
                 </a>
             </small>
             <? endif;?>
@@ -25,7 +25,7 @@
 
         <? if ($connect && KService::get('koowa:loader')->loadIdentifier('com://site/connect.template.helper.service')): ?>
         <p class="lead">
-            <?= @text('COM-PEOPLE-SOCIALMEDIA-LOGIN') ?>
+            <?= @text('COM-ACADEMIC-SOCIALMEDIA-LOGIN') ?>
         </p>
         <p>
             <?= $this->renderHelper('com:connect.template.helper.service.renderLogins') ?>
@@ -36,7 +36,7 @@
 
         <div class="control-group">
             <div class="controls">
-                <input required class="input-block-level" name="username" placeholder="<?= @text('COM-PEOPLE-SESSION-PLACEHOLDER-USERNAME-EMAIL')?>" id="person-username" type="text" size="25" />
+                <input required class="input-block-level" name="username" placeholder="<?= @text('COM-ACADEMIC-SESSION-PLACEHOLDER-USERNAME-EMAIL')?>" id="person-username" type="text" size="25" />
             </div>
         </div>
 
@@ -44,22 +44,22 @@
             <div class="controls">
                 <?= @helper('password.input', array('required' => true)) ?>
                 <a href="<?= @route('view=token') ?>">
-                    <?= @text('COM-PEOPLE-SESSION-FORGOT-PASSWORD'); ?>
+                    <?= @text('COM-ACADEMIC-SESSION-FORGOT-PASSWORD'); ?>
                 </a>
             </div>
         </div>
 
         <div class="control-group">
             <label class="checkbox">
-                <input type="checkbox" name="remember" value="true" alt="<?= @text('COM-PEOPLE-SESSION-REMEMBER-ME'); ?>" />
-                <?= @text('COM-PEOPLE-SESSION-REMEMBER-ME'); ?>
+                <input type="checkbox" name="remember" value="true" alt="<?= @text('COM-ACADEMIC-SESSION-REMEMBER-ME'); ?>" />
+                <?= @text('COM-ACADEMIC-SESSION-REMEMBER-ME'); ?>
             </label>
         </div>
     </fieldset>
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary btn-large pull-right" data-loading-text="<?= @text('LIB-AN-ACTION-PLEASE-WAIT') ?>">
-            <?= @text('COM-PEOPLE-ACTION-LOGIN') ?>
+            <?= @text('COM-ACADEMIC-ACTION-LOGIN') ?>
         </button>
     </div>
 </form>

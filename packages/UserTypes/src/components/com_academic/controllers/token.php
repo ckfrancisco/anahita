@@ -87,7 +87,7 @@ class ComPeopleControllerToken extends ComBaseControllerResource
             $settings = $this->getService('com:settings.setting');
             $mails[] = array(
                 'to' => $this->person->email,
-                'subject' => sprintf(AnTranslator::_('COM-PEOPLE-MAIL-SUBJECT-PASSWORD-RESET'), $settings->sitename),
+                'subject' => sprintf(AnTranslator::_('COM-ACADEMIC-MAIL-SUBJECT-PASSWORD-RESET'), $settings->sitename),
                 'template' => 'password_reset',
             );
             $this->mail($mails);

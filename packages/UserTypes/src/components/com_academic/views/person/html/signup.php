@@ -8,8 +8,8 @@
 
         <? if (!$anybody): ?>
         <div class="alert alert-info alert-block">
-            <h4><?= @text('COM-PEOPLE-WELCOME1') ?></h4>
-            <p><?= @text('COM-PEOPLE-WELCOME2') ?></p>
+            <h4><?= @text('COM-ACADEMIC-WELCOME1') ?></h4>
+            <p><?= @text('COM-ACADEMIC-WELCOME2') ?></p>
         </div>
         <? endif; ?>
 
@@ -25,12 +25,12 @@
         >
             <fieldset>
                 <legend>
-                    <?= @text('COM-PEOPLE-ACTION-CREATE-AN-ACCOUNT') ?>
+                    <?= @text('COM-ACADEMIC-ACTION-CREATE-AN-ACCOUNT') ?>
                 </legend>
 
 				<div class="control-group">
                     <label class="control-label"  for="person-given-name">
-                        <?= @text('COM-PEOPLE-GIVEN-NAME'); ?>
+                        <?= @text('COM-ACADEMIC-GIVEN-NAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -47,7 +47,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-family-name">
-                        <?= @text('COM-PEOPLE-FAMILY-NAME'); ?>
+                        <?= @text('COM-ACADEMIC-FAMILY-NAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -64,7 +64,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-username">
-                        <?= @text('COM-PEOPLE-SIGNUP-USERNAME'); ?>
+                        <?= @text('COM-ACADEMIC-SIGNUP-USERNAME'); ?>
                     </label>
                     <div class="controls">
                         <input
@@ -84,7 +84,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="person-email">
-                        <?= @text('COM-PEOPLE-SIGNUP-EMAIL'); ?>
+                        <?= @text('COM-ACADEMIC-SIGNUP-EMAIL'); ?>
                     </label>
                     <div class="controls">
                        <input
@@ -104,7 +104,7 @@
 
                 <div class="control-group">
                     <label class="control-label"  for="password">
-                        <?= @text('COM-PEOPLE-SIGNUP-PASSWORD'); ?>
+                        <?= @text('COM-ACADEMIC-SIGNUP-PASSWORD'); ?>
                     </label>
                     <div class="controls">
                         <?= @helper('password.input') ?>
@@ -118,7 +118,7 @@
 					class="btn btn-primary btn-large pull-right"
 					data-loading-text="<?= @text('LIB-AN-ACTION-PLEASE-WAIT') ?>"
 				>
-                    <?= @text('COM-PEOPLE-ACTION-REGISTER') ?>
+                    <?= @text('COM-ACADEMIC-ACTION-REGISTER') ?>
                 </button>
             </div>
         </form>

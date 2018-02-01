@@ -175,7 +175,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
 
         } else {
 
-            $this->setMessage('COM-PEOPLE-AUTHENTICATION-FAILED', 'error');
+            $this->setMessage('COM-ACADEMIC-AUTHENTICATION-FAILED', 'error');
             throw new LibBaseControllerExceptionUnauthorized('Authentication Failed. Check username/password');
             $this->getResponse()->status = KHttpResponse::FORBIDDEN;
             $this->getResponse()->setRedirect(route('option=com_people&view=session'));
@@ -242,7 +242,7 @@ class ComPeopleControllerSession extends ComBaseControllerResource
             $this->getResponse()->setRedirect($returnUrl);
         } else {
             $_SESSION['return'] = null;
-            $this->setMessage('COM-PEOPLE-PROMPT-UPDATE-PASSWORD');
+            $this->setMessage('COM-ACADEMIC-PROMPT-UPDATE-PASSWORD');
             $this->getResponse()->setRedirect(route($person->getURL().'&get=settings&edit=account'));
         }
 

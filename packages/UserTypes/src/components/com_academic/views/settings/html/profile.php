@@ -5,7 +5,7 @@
 <form action="<?= @route($item->getURL(false)) ?>" method="post" autocomplete="off">
 	<div class="control-group">
 		<label class="control-label"  for="person-given-name">
-			<?= @text('COM-PEOPLE-GIVEN-NAME'); ?>
+			<?= @text('COM-ACADEMIC-GIVEN-NAME'); ?>
 		</label>
 		<div class="controls">
 			<input
@@ -23,7 +23,7 @@
 
 	<div class="control-group">
 		<label class="control-label"  for="person-family-name">
-			<?= @text('COM-PEOPLE-FAMILY-NAME'); ?>
+			<?= @text('COM-ACADEMIC-FAMILY-NAME'); ?>
 		</label>
 		<div class="controls">
 			<input
@@ -50,14 +50,14 @@
 
     <div class="control-group">
         <label class="control-label" for="gender">
-            <?= @text('COM-PEOPLE-PROFILE-GENDER') ?>
+            <?= @text('COM-ACADEMIC-PROFILE-GENDER') ?>
         </label>
         <div class="controls">
             <?
             $genderOptions = array(
-                'neutral' => @text('COM-PEOPLE-GENDER-NEUTRAL'),
-                'female' => @text('COM-PEOPLE-GENDER-FEMALE'),
-				'male' => @text('COM-PEOPLE-GENDER-MALE')
+                'neutral' => @text('COM-ACADEMIC-GENDER-NEUTRAL'),
+                'female' => @text('COM-ACADEMIC-GENDER-FEMALE'),
+				'male' => @text('COM-ACADEMIC-GENDER-MALE')
 			);
             ?>
             <?= @html('select', 'gender', array(
@@ -70,7 +70,7 @@
     <? if ($item->authorize('changeUserType')): ?>
     <div class="control-group">
         <label class="control-label" for="person-group">
-            <?= @text('COM-PEOPLE-USERTYPE'); ?>
+            <?= @text('COM-ACADEMIC-USERTYPE'); ?>
         </label>
         <div class="controls">
             <?= @helper('usertypes', array('selected' => $item->usertype)) ?>
