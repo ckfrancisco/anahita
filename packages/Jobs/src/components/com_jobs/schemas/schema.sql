@@ -1,0 +1,1 @@
+INSERT INTO #__migrator_versions (`version`,`component`) VALUES(1, 'jobs') ON DUPLICATE KEY UPDATE `version` = 1;
