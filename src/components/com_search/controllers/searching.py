@@ -1,4 +1,7 @@
 import math
+import googlemaps
+
+gmaps = googlemaps.Client(key="AIzaSyAjBqK524XM2z1uw_3gU6FW07rFhkD9SpI")
 
 # calculates the distance between two geopraphical coordinates
 def compute_distance(lat_one, lon_one, lat_two, lon_two):
@@ -16,11 +19,23 @@ def compute_distance(lat_one, lon_one, lat_two, lon_two):
         c = 2 * math.atan(math.sqrt(a) / math.sqrt(1 - a))
         
         return earthRadiusMiles * c
+
+# calculates the distance between two cities
+def compute_city_distance(city_one, city_two):
+        geo_one = gmaps.geocode(city_one)
+        lat_one = geo_one[0]["geometry"]["location"]["lat"]
+        lon_one = geo_one[0]["geometry"]["location"]["lng"]
+
+        geo_two = gmaps.geocode(city_two)
+        lat_two = geo_two[0]["geometry"]["location"]["lat"]
+        lon_two = geo_two[0]["geometry"]["location"]["lng"]
+
+        print("Distance between " + city_one + " and " + city_two +
+              " is " + str(compute_distance(lat_one, lon_one, lat_two, lon_two)) +
+              " miles!")
         
 if __name__ == '__main__':
-    lat_one = input("Enter latitude one: ")
-    lon_one = input("Enter longitude one: ")
-    lat_two = input("Enter latitude two: ")
-    lon_two = input("Enter longitude one: ")
-    print(compute_distance(float(lat_one), float(lon_one),
-                           float(lat_two), float(lon_two)))
+    loc_one = input("Enter location one: ")
+    loc_two = input("Enter location two: ")
+
+    compute_city_distance(loc_one, loc_two)
