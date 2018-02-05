@@ -3,9 +3,10 @@
 /**
  * Album Controller.
  *
- * @category   Sparq
+ * @category   Anahita
  *
- * @author     Peter Qafoku
+ * @author     Arash Sanieyan <ash@anahitapolis.com>
+ * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  *
  * @link       http://www.GetAnahita.com
@@ -27,14 +28,15 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
             'before.add',
             'before.adddocument',
             'before.removedocument',
-            'before.updatedocument',
+            'before.updatedocuments',
+            'before.updatecover',
         ),
         array($this, 'fetchDocument'));
 
         $this->registerCallback(array(
           'after.adddocument',
           'after.removedocument',
-          'after.updatedocument',
+          'after.updatedocuments',
         ),
         array($this, 'reorder'));
     }
@@ -48,13 +50,12 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
         $sets->order('updateTime', 'DESC');
 
         if ($this->document_id && $this->getRequest()->get('layout') != 'selector') {
-            $sets->where('document.id', '=', $this->document_id);
+            $sets->where('documents.id', '=', $this->document_id);
         }
 
         return $sets;
     }
 
-    protected function _actionUpdatedocuments($context)
     /**
      * Updates the documents in a set given an array of ids.
      *
@@ -62,6 +63,7 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
      *
      * @return object ComDocumentsDomainEntitySet
      */
+    protected function _actionUpdatedocuments($context)
     {
         $this->execute('adddocument', $context);
         $document_ids = (array) KConfig::unbox($context->data->document_id);
@@ -114,7 +116,7 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
      */
     protected function _actionRemovedocument($context)
     {
-        $lastDocument = ($this->getItem()->document->getTotal() > 1) ? false : true;
+        $lastDocument = ($this->getItem()->documents->getTotal() > 1) ? false : true;
         $this->getItem()->removeDocument($this->document);
 
         if ($lastDocument) {
@@ -142,7 +144,7 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
         $document_id = (array) KConfig::unbox($data->document_id);
 
         if (!empty($document_id)) {
-            $document = $this->actor->document->fetchSet(array('id' => $document_id));
+            $document = $this->actor->documents->fetchSet(array('id' => $document_id));
 
             if (count($document) === 0) {
                 $document = null;
@@ -171,7 +173,7 @@ class ComDocumentsControllerSet extends ComMediumControllerDefault
 
             if (!$set) {
                 $context->setError(null);
-                //if the action is addphoto and there are no sets then create an set
+                //if the action is adddocument and there are no sets then create an set
                 $set = $this->add($context);
             }
 

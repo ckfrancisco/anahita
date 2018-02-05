@@ -2,11 +2,11 @@
 /**
  * Document Helper.
  *
- * Provides methods for rendering ui elements for Documents app
+ * Provides methods for rendering ui elements for documents app
  *
- * @category   Document
+ * @category   Documents
  *
- * @author     Peter Qafoku
+ * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  *
  * @link       http://www.GetAnahita.com

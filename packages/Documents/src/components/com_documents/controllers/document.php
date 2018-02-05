@@ -3,134 +3,131 @@
 /**
  * Document Controller.
  *
- * @category   Sparq
+ * @category   Anahita
  *
- * @author     Peter Qafoku
+ * @author     Arash Sanieyan <ash@anahitapolis.com>
+ * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  *
  * @link       http://www.GetAnahita.com
  */
 class ComDocumentsControllerDocument extends ComMediumControllerDefault
 {
-  /**
-   * The max upload limit.
-   *
-   * @var int
-   */
-  protected $_max_upload_limit;
+    /**
+     * The max upload limit.
+     *
+     * @var int
+     */
+    protected $_max_upload_limit;
 
-  /**
-   * Constructor.
-   *
-   * @param KConfig $config An optional KConfig object with configuration options.
-   */
-  public function __construct(KConfig $config)
-  {
-      parent::__construct($config);
-      $this->_max_upload_limit = $config->max_upload_limit;
-  }
+    /**
+     * Constructor.
+     *
+     * @param KConfig $config An optional KConfig object with configuration options.
+     */
+    public function __construct(KConfig $config)
+    {
+        parent::__construct($config);
+        $this->_max_upload_limit = $config->max_upload_limit;
+    }
 
-  /**
-   * Initializes the default configuration for the object.
-   *
-   * Called from {@link __construct()} as a first step of object instantiation.
-   *
-   * @param KConfig $config An optional KConfig object with configuration options.
-   */
-  protected function _initialize(KConfig $config)
-  {
-    //todo set a max document uploadlimit, i think photos.uploadlimit is in the database
-    //has to do with repos
-    //this is set in Photos/src/templates/helpers/ui.php
-      $config->append(array(
-          'max_upload_limit' => get_config_value('photos.uploadlimit', 2),
-      ));
+    /**
+     * Initializes the default configuration for the object.
+     *
+     * Called from {@link __construct()} as a first step of object instantiation.
+     *
+     * @param KConfig $config An optional KConfig object with configuration options.
+     */
+    protected function _initialize(KConfig $config)
+    {
+        $config->append(array(
+            'max_upload_limit' => get_config_value('documents.uploadlimit', 2),
+        ));
 
-      parent::_initialize($config);
-  }
+        parent::_initialize($config);
+    }
 
-  /**
-   * Browse Photos.
-   *
-   * @param KCommandContext $context
-   */
-   //pretty much renamed things from photo to documents, need to see where these changes take place
-  protected function _actionBrowse($context)
-  {
-      $this->getService('repos:documents.set'); //todo this was repos:photos.set, what does this reference?
-      $documents = parent::_actionBrowse($context);
-      $documents->order('creationTime', 'DESC');
+    /**
+     * Browse Documents.
+     *
+     * @param KCommandContext $context
+     */
+    protected function _actionBrowse($context)
+    {
+        $this->getService('repos:documents.set');
+        $documents = parent::_actionBrowse($context);
+        $documents->order('creationTime', 'DESC');
 
-      if ($this->exclude_set != '') {
-          $set = $this->actor->sets->fetch(array('id' => $this->exclude_set));
+        if ($this->exclude_set != '') {
+            $set = $this->actor->sets->fetch(array('id' => $this->exclude_set));
 
-          if (!empty($set)) {
-              $document_ids = array();
+            if (!empty($set)) {
+                $document_ids = array();
 
-              foreach ($set->documents as $document) {
-                  $document_ids[] = $document->id;
-              }
+                foreach ($set->documents as $document) {
+                    $document_ids[] = $document->id;
+                }
 
-              if (count($document_ids)) {
-                  $documents->where('document.id', '<>', $document_ids);
-              }
-          }
-      }
-      return $documents;
-  }
-  /**
-   * Method to upload and Add a photo.
-   *
-   * @param KCommandContext $context
-   */
-  protected function _actionAdd($context)
-  {
-      $data = $context->data;
-      $file = KRequest::get('files.file', 'raw');
-      $content = @file_get_contents($file['tmp_name']);
-      $filesize = strlen($content);
-      $uploadlimit = $this->_max_upload_limit * 1024 * 1024; //might need to up this to upload large pdfs
+                if (count($document_ids)) {
+                    $documents->where('document.id', '<>', $document_ids);
+                }
+            }
+        }
 
-      $exif = (function_exists('exif_read_data')) ? @exif_read_data($file['tmp_name']) : array();
+        return $documents;
+    }
 
-      if ($filesize == 0) {
-          throw new LibBaseControllerExceptionBadRequest('File is missing');
+    /**
+     * Method to upload and Add a document.
+     *
+     * @param KCommandContext $context
+     */
+    protected function _actionAdd($context)
+    {
+        $data = $context->data;
+        $file = KRequest::get('files.file', 'raw');
+        $content = @file_get_contents($file['tmp_name']);
+        $filesize = strlen($content);
+        $uploadlimit = $this->_max_upload_limit * 1024 * 1024;
 
-          return;
-      }
+        $exif = (function_exists('exif_read_data')) ? @exif_read_data($file['tmp_name']) : array();
 
-      if ($filesize > $uploadlimit) {
-          throw new LibBaseControllerExceptionBadRequest('Exceed maximum size');
+        if ($filesize == 0) {
+            throw new LibBaseControllerExceptionBadRequest('File is missing');
 
-          return;
-      }
+            return;
+        }
 
-      //todo figure out what needs to change here and below
+        if ($filesize > $uploadlimit) {
+            throw new LibBaseControllerExceptionBadRequest('Exceed maximum size');
 
-      $orientation = 0;
+            return;
+        }
 
-      if (!empty($exif) && isset($exif['Orientation'])) {
-          $orientation = $exif['Orientation'];
-      }
+        $orientation = 0;
 
-      $data['portrait'] = array(
-          'data' => $content,
-          'rotation' => $orientation,
-          'mimetype' => isset($file['type']) ? $file['type'] : null,
-      );
+        if (!empty($exif) && isset($exif['Orientation'])) {
+            $orientation = $exif['Orientation'];
+        }
 
-      $photo = $this->actor->photos->addNew($data);
-      $photo->setExifData($exif);
-      $photo->save();
-      $this->setItem($photo);
-      $this->getResponse()->status = KHttpResponse::CREATED;
+        $data['portrait'] = array(
+            'data' => $content,
+            'rotation' => $orientation,
+            'mimetype' => isset($file['type']) ? $file['type'] : null,
+        );
 
-      if ($photo->body && preg_match('/\S/', $photo->body)) {
-          $context->append(array(
-              'story' => array('body' => $photo->body),
-          ));
-      }
+        $document = $this->actor->documents->addNew($data);
+        $document->setExifData($exif);
+        $document->save();
+        $this->setItem($document);
+        $this->getResponse()->status = KHttpResponse::CREATED;
 
-      return $photo;
-  }
+        if ($document->body && preg_match('/\S/', $document->body)) {
+            $context->append(array(
+                'story' => array('body' => $document->body),
+            ));
+        }
+
+        return $document;
+    }
 }

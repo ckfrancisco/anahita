@@ -29,7 +29,7 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
             'behaviors' => array(
                 'hittable',
             ),
-            'relationships' => array(   //todo i think relationships needs to be updated
+            'relationships' => array(
                 'documents' => array('through' => 'edge'),
             ),
         ));
@@ -42,27 +42,23 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
      *
      * @return string path to image source
      *
-     * @param $size photo size. One of the constan sizes in the ComPhotosDomainEntityPhoto class
+     * @param $size document size. One of the constan sizes in the ComDocumentsDomainEntityDocument class
      */
+    public function getCoverSource($size = ComDocumentsDomainEntityDocument::SIZE_SQUARE)
+    {
+        $cover = $this->documents->order('documentSets.ordering')->fetch();
+        $filename = $cover->filename;
 
+        //get file extension
+        $extension = explode('.', $filename);
+        $extension = array_pop($extension);
 
-     //todo dont think we need this
+        //remove file extension
+        $name = preg_replace('#\.[^.]*$#', '', $filename);
+        $filename = $name.'_'.$size.'.'.$extension;
 
-    // public function getCoverSource($size = ComPhotosDomainEntityPhoto::SIZE_SQUARE)
-    // {
-    //     $cover = $this->photos->order('photoSets.ordering')->fetch();
-    //     $filename = $cover->filename;
-    //
-    //     //get file extension
-    //     $extension = explode('.', $filename);
-    //     $extension = array_pop($extension);
-    //
-    //     //remove file extension
-    //     $name = preg_replace('#\.[^.]*$#', '', $filename);
-    //     $filename = $name.'_'.$size.'.'.$extension;
-    //
-    //     return $this->owner->getPathURL('com_photos/'.$filename);
-    // }
+        return $this->owner->getPathURL('com_documents/'.$filename);
+    }
 
     /**
      * Adds a document to a set.
@@ -71,7 +67,7 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
      *
      * @param $document a ComDocumentsDomainEntityDocument object
      */
-    public function addDocment($document)
+    public function addDocument($document)
     {
         $documents = AnHelperArray::getIterator($document);
 
@@ -87,7 +83,7 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
     /**
      * Removes a document or list of documents from the set.
      *
-     * @param $photo a ComDocumentDomainEntityDocument object
+     * @param $document a ComDocumentsDomainEntityDocument object
      */
     public function removeDocument($document)
     {
@@ -108,7 +104,7 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
     public function reorder($document_ids)
     {
         if (count($document_ids) == 1) {
-            if ($edge = $this->getService('repos:document.edge')
+            if ($edge = $this->getService('repos:documents.edge')
                               ->fetch(array(
                                         'set' => $this,
                                         'document.id' => $document_ids[0],
@@ -121,7 +117,7 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
         }
 
         foreach ($document_ids as $index => $document_id) {
-            if ($edge = $this->getService('repos:document.edge')
+            if ($edge = $this->getService('repos:documents.edge')
                              ->fetch(array(
                                       'set' => $this,
                                       'document.id' => $document_id, ))

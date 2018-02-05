@@ -1,6 +1,6 @@
 {
   "name": "Documents",
-  "description": "The Sparq document sharing and blogging social app",
+  "description": "The Anahita document sharing and blogging social app",
   "type": "component",
   "version": "4.3.0",
   "homepage": "https://www.GetAnahita.com",
@@ -11,9 +11,14 @@
   ],
   "authors": [
       {
-        "name": "Peter Qafoku",
-        "email": "",
-        "homepage": ""
+        "name": "Rastin Mehr",
+        "email": "rastin@anahitapolis.com",
+        "homepage": "http://www.rmdstudio.com"
+      },
+      {
+        "name": "Ash Sanieyan",
+        "email": "ash@peerglobe.com",
+        "homepage": "http://www.PeerGlobe.com"
       }
   ]
 }

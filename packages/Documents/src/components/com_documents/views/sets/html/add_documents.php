@@ -23,7 +23,7 @@
 	</div>
 	<? endif; ?>
 
-	<? if ($actor->authorize('action', 'com_DOCUMENTs:set:add')): ?>
+	<? if ($actor->authorize('action', 'com_documents:set:add')): ?>
 	<div class="control-group">
 		<label class="control-label" for="title"><?= @text('COM-DOCUMENTS-ACTION-OR-CREATE-A-NEW-SET') ?></label>
 		<div class="controls">

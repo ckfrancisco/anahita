@@ -3,9 +3,10 @@
 /**
  * Document Entity.
  *
- * @category   Sparq
+ * @category   Anahita
  *
- * @author     Peter Qafoku
+ * @author     Arash Sanieyan <ash@anahitapolis.com>
+ * @author     Rastin Mehr <rastin@anahitapolis.com>
  * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl-3.0.html>
  *
  * @link       http://www.GetAnahita.com
@@ -15,19 +16,17 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     /**
      * Default Image.
      */
-    const DEFAULT_IMAGE = 'default.pdf';
+    const DEFAULT_IMAGE = 'default.png';
 
     /**
-     * Documents Size Constants.
+     * Document Size Constants.
      */
-     //todo do we need constants for the document
-
-    // const SIZE_ORIGINAL = 'original';
-    // const SIZE_LARGE = 'large';
-    // const SIZE_MEDIUM = 'medium';
-    // const SIZE_SMALL = 'small';
-    // const SIZE_THUMBNAIL = 'thumbnail';
-    // const SIZE_SQUARE = 'square';
+    const SIZE_ORIGINAL = 'original';
+    const SIZE_LARGE = 'large';
+    const SIZE_MEDIUM = 'medium';
+    const SIZE_SMALL = 'small';
+    const SIZE_THUMBNAIL = 'thumbnail';
+    const SIZE_SQUARE = 'square';
 
     /**
      * Initializes the default configuration for the object.
@@ -38,7 +37,6 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
      */
     protected function _initialize(KConfig $config)
     {
-      //todo i think most of this has to change
         $config->append(array(
             'attributes' => array('mimetype'),
             'behaviors' => array(
@@ -52,6 +50,28 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
         parent::_initialize($config);
     }
 
+    /**
+     * Obtain the array of image file exif data as it was captured
+     * while uploading the original image.
+     *
+     * @return array
+     */
+    public function getExifData()
+    {
+        return $this->getValue('exif_data', array());
+    }
+
+    /**
+     * Set the image file exif data.
+     *
+     * @param  array strucutre of the exif data read from the file
+     */
+    public function setExifData($data = array())
+    {
+        $this->setValue('exif_data', $data);
+
+        return $this;
+    }
 
     /**
      * Synchronizes the document sets.

@@ -1,5 +1,5 @@
 <?php
 
-class ComPhotosRouter extends ComMediumRouterDefault
+class ComDocumentsRouter extends ComMediumRouterDefault
 {
 }
