@@ -33,9 +33,17 @@ def compute_city_distance(city_one, city_two):
         print("Distance between " + city_one + " and " + city_two +
               " is " + str(compute_distance(lat_one, lon_one, lat_two, lon_two)) +
               " miles!")
+
+# calculates the hamming distance between
+# strings of equal lengths
+def hamming_distance(string_one, string_two):
+        assert len(string_one) == len(string_two)
+        return sum(match_one != match_two for match_one, match_two
+                   in zip(string_one, string_two))
         
 if __name__ == '__main__':
     loc_one = input("Enter location one: ")
     loc_two = input("Enter location two: ")
-
     compute_city_distance(loc_one, loc_two)
+    
+    print(hamming_distance("banana", "bonono"))
