@@ -1,17 +1,17 @@
 {
     "name": "SparqEdu",
-    "description": "Shiraz [ʃiːˈrɒːz] is named after the ancient city of poets, mathematicians, flowers, and wine in south of Persia which dates back to 4000 BCE.",
-    "version": "4.3.0",
+    "description": "SparqEdu custom template",
+    "version": "1.0.0",
     "homepage": "https://www.GetAnahita.com",
     "authors": [
       {
-        "name": "Rastin Mehr",
-        "email": "rastin@getanahita.com",
-        "homepage": "http://www.GetAnahita.com"
+        "name": "Christian Francisco",
+        "email": "",
+        "homepage": ""
       }
     ],
     "license": "GPLv3",
-    "copyright": "Copyright 2016 - rmdStudio Inc.",
+    "copyright": "Copyright 2018 - SparqEdu",
     "exceptions": {
         "filename": {
             "type": "noreplace",
@@ -21,17 +21,13 @@
     "fields": [{
           "option": [
               {
-                  "value": "style1",
-                  "text": "Style 1"
-              },
-              {
-                  "value": "style2",
-                  "text": "Custom"
+                  "value": "sparqedustyle",
+                  "text": "SparqEdu Style"
               }
           ],
           "name": "cssStyle",
           "type": "list",
-          "default": "style1",
+          "default": "sparqedustyle",
           "label": "Style"
       },
       {
@@ -76,16 +72,7 @@
           "description": "Favicon file name"
       },
       {
-          "option": [
-              {
-                  "value": "0",
-                  "text": "Light"
-              },
-              {
-                  "value": "1",
-                  "text": "Dark"
-              }
-          ],
+          "option": [],
           "name": "navbarInverse",
           "type": "list",
           "default": "0",
