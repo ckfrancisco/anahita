@@ -20,7 +20,7 @@
     );
 
     $uservalue = array(
-        '' => AnTranslator::_('COM-PEOPLE-FILTER-USERTYPE'),
+        '' => AnTranslator::_('COM-PEOPLE-FILTER-USERVALUE'),
         ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
         ComPeopleDomainEntityPerson::USERVALUE_TUTOR => @text('COM-PEOPLE-USERVALUE-TUTOR'),
         ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
