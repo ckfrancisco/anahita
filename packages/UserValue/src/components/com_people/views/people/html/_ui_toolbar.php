@@ -26,7 +26,7 @@
         ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
         ComPeopleDomainEntityPerson::USERVALUE_EMPLOYER => @text('COM-PEOPLE-USERVALUE-EMPLOYER'),
     );
-    
+
     $html = $this->getService('com:base.template.helper.html');
     ?>
     <?= $html->select('filter[usertype]', array('options' => $usertypes)) ?>
@@ -36,9 +36,3 @@
     </label>
     <? endif; ?>
 </form>
-
-
-COM-PEOPLE-USERVALUE-TEACHER="Teacher"
-COM-PEOPLE-USERVALUE-TUTOR="Tutor"
-COM-PEOPLE-USERVALUE-RECRUITER="Recruiter"
-COM-PEOPLE-USERVALUE-EMPLOYER="Employer"
