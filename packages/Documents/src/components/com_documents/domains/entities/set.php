@@ -38,9 +38,9 @@ class ComDocumentsDomainEntitySet extends ComMediumDomainEntityMedium
     }
 
     /**
-     * Obtains the image file source.
+     * Obtains the document file source.
      *
-     * @return string path to image source
+     * @return string path to document source
      *
      * @param $size document size. One of the constan sizes in the ComDocumentsDomainEntityDocument class
      */

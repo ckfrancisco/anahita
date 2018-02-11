@@ -51,8 +51,8 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     }
 
     /**
-     * Obtain the array of image file exif data as it was captured
-     * while uploading the original image.
+     * Obtain the array of document file exif data as it was captured
+     * while uploading the original document.
      *
      * @return array
      */
@@ -62,7 +62,7 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     }
 
     /**
-     * Set the image file exif data.
+     * Set the document file exif data.
      *
      * @param  array strucutre of the exif data read from the file
      */
