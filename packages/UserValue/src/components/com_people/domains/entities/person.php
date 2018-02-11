@@ -40,6 +40,14 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     const USERTYPE_ADMINISTRATOR = 'administrator';
     const USERTYPE_SUPER_ADMINISTRATOR = 'super-administrator';
 
+    /*
+     * User Values----------------- William
+     */
+    const USERVALUE_TEACHER="Teacher"
+    const USERVALUE_TUTOR="Tutor"
+    const USERVALUE_RECRUITER="Recruiter"
+    const USERVALUE_EMPLOYER="Employer"
+
     /**
      * Initializes the default configuration for the object.
      *

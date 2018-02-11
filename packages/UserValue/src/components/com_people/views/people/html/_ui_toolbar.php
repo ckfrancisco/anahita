@@ -18,6 +18,15 @@
         ComPeopleDomainEntityPerson::USERTYPE_ADMINISTRATOR => @text('COM-PEOPLE-USERTYPE-ADMINISTRATOR'),
         ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR => @text('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR'),
     );
+
+    $uservalue = array(
+        '' => AnTranslator::_('COM-PEOPLE-FILTER-USERTYPE'),
+        ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
+        ComPeopleDomainEntityPerson::USERVALUE_TUTOR => @text('COM-PEOPLE-USERVALUE-TUTOR'),
+        ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
+        ComPeopleDomainEntityPerson::USERVALUE_EMPLOYER => @text('COM-PEOPLE-USERVALUE-EMPLOYER'),
+    );
+    
     $html = $this->getService('com:base.template.helper.html');
     ?>
     <?= $html->select('filter[usertype]', array('options' => $usertypes)) ?>
@@ -27,3 +36,9 @@
     </label>
     <? endif; ?>
 </form>
+
+
+COM-PEOPLE-USERVALUE-TEACHER="Teacher"
+COM-PEOPLE-USERVALUE-TUTOR="Tutor"
+COM-PEOPLE-USERVALUE-RECRUITER="Recruiter"
+COM-PEOPLE-USERVALUE-EMPLOYER="Employer"
