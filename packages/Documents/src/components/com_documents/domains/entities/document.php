@@ -14,9 +14,9 @@
 class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
 {
     /**
-     * Default Image.
+     * Default Document.
      */
-    const DEFAULT_IMAGE = 'default.png';
+    const DEFAULT_Document = 'default.pdf';
 
     /**
      * Document Size Constants.

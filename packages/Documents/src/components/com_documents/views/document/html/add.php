@@ -44,7 +44,7 @@ $('#documents-add').documentUpload({
 	maxFiles : 10,
 	addRemoveLinks : true,
 	autoQueue: false,
-	acceptedFiles : 'document/pdf',
+	acceptedFiles : 'application/pdf',
 	dictDefaultMessage : "<?= @text('COM-DOCUMENTS-UPLOAD-DROP-FILES-TO-UPLOAD') ?>",
 	dictInvalidFileType : "<?= @text('COM-DOCUMENTS-UPLOAD-INVALID-FILE-TYPE') ?>",
 	dictFileTooBig : "<?= sprintf(@text('COM-DOCUMENTS-UPLOAD-FILE-TOO-BIG'), get_config_value('documents.uploadlimit', 4)) ?>",
