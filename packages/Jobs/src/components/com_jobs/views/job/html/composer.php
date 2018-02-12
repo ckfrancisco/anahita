@@ -16,6 +16,33 @@
 		</div>
 
 		<div class="control-group">
+			<label class="control-label" for="job-link">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LINK') ?>
+			</label>
+			<div class="controls">
+				<textarea id="job-link" class="input-block-level" name="body" cols="5" rows="1" maxlength="5000"></textarea>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="job-majors">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-MAJORS') ?>
+			</label>
+			<div class="controls">
+				<textarea id="job-majors" class="input-block-level" name="body" cols="5" rows="3" maxlength="5000"></textarea>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="job-title">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
+			</label>
+			<div class="controls">
+				<textarea id="job-title" class="input-block-level" name="body" cols="5" rows="1" maxlength="5000"></textarea>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<label class="control-label" for="job-description">
 			    <?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
 			</label>
