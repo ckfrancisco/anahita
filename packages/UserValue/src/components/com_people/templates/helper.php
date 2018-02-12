@@ -68,4 +68,44 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
 
         return $html->select($options->name, array('options' => $usertypes, 'selected' => $selected), KConfig::unbox($options));
     }
+
+
+    /**
+     * Displays selector for person uservalues. ------- copied from above and modified by William
+     *
+     * @param array of options
+     *
+     * @return html select
+     */
+    public function uservalues($options = array())
+    {
+        $viewer = get_viewer();
+        $options = new KConfig($options);
+
+        $options->append(array(
+            'id' => 'person-userType',
+            'selected' => 'registered',
+            'name' => 'usertype',
+            'class' => 'input-block-level',
+        ));
+
+        $selected = $options->selected;
+
+        unset($options->selected);
+
+        $uservalues = array(
+            ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
+            ComPeopleDomainEntityPerson::USERVALUE_TUTOR => @text('COM-PEOPLE-USERVALUE-TUTOR'),
+            ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
+            ComPeopleDomainEntityPerson::USERVALUE_EMPLOYER => @text('COM-PEOPLE-USERVALUE-EMPLOYER'),
+        );
+
+        if ($viewer->superadmin()) {
+            $uservalues[ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR] = AnTranslator::_('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR');
+        }
+
+        $html = $this->getService('com:base.template.helper.html');
+
+        return $html->select($options->name, array('options' => $uservalues, 'selected' => $selected), KConfig::unbox($options));
+    }
 }
