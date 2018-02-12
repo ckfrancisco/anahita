@@ -79,6 +79,7 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
                     'format' => 'password'
                 ),
                 'usertype',
+                'uservalue', /* Added uservalue type ------- William */
                 'gender',
                 'lastVisitDate' => array(
                     'default' => 'date'
