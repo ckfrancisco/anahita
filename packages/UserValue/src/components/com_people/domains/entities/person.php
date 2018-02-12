@@ -43,10 +43,10 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     /*
      * User Values----------------- William
      */
-    const USERVALUE_TEACHER="Teacher"
-    const USERVALUE_TUTOR="Tutor"
-    const USERVALUE_RECRUITER="Recruiter"
-    const USERVALUE_EMPLOYER="Employer"
+    const USERVALUE_TEACHER="Teacher";
+    const USERVALUE_TUTOR="Tutor";
+    const USERVALUE_RECRUITER="Recruiter";
+    const USERVALUE_EMPLOYER="Employer";
 
     /**
      * Initializes the default configuration for the object.
