@@ -78,6 +78,17 @@
     </div>
     <? endif; ?>
 
+	<? if ($item->authorize('changeUserType')): ?>
+    <div class="control-group">
+        <label class="control-label" for="person-group">
+            <?= @text('COM-PEOPLE-USERVALUE'); ?>
+        </label>
+        <div class="controls">
+            <?= @helper('uservalues', array('selected' => $item->uservalues)) ?>
+        </div>
+    </div>
+    <? endif; ?>
+
 	<? foreach ($profile as $header => $fields)  : ?>
 	<fieldset>
 		<legend><?= @text($header) ?></legend>
