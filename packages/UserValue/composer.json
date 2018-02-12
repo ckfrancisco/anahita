@@ -1,6 +1,6 @@
 {
     "type": "anahita-extension",
-    "name": "anahita/usertypes",
+    "name": "anahita/uservalue",
     "keywords" : ["anahita extension"],
     "description": "",
     "extension-source" : "src",
