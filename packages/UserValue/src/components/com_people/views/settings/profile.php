@@ -78,7 +78,7 @@
     </div>
     <? endif; ?>
 
-	<? if ($item->authorize('changeUserType')): ?>
+	<? if ($item->authorize('changeUserType')): # copied code from above --- william ?>
     <div class="control-group">
         <label class="control-label" for="person-group">
             <?= @text('COM-PEOPLE-USERVALUE'); ?>

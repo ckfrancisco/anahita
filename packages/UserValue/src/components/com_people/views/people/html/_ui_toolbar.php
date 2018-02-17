@@ -32,7 +32,7 @@
 <form action="<?= @route('layout=list') ?>" id="an-filterbox" class="an-filterbox form-inline" name="an-filterbox" method="get">
     <input placeholder="Filter..." type="text" name="q" class="input-large search-query" id="an-search-query" value="" size="21" maxlength="100" />
     <? if ($viewer->admin()) : ?>
-    <?
+    <?                                                              # copied code from above ----- william
     $uservalues = array(
         '' => AnTranslator::_('COM-PEOPLE-FILTER-USERVALUE'),
         ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
