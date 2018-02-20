@@ -20,7 +20,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LINK') ?>
 			</label>
 			<div class="controls">
-				<textarea id="job-link" class="input-block-level" name="body" cols="5" rows="1" maxlength="5000"></textarea>
+				<textarea id="job-link" class="input-block-level" name="link" cols="5" rows="1" maxlength="5000"></textarea>
 			</div>
 		</div>
 
@@ -29,7 +29,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-MAJORS') ?>
 			</label>
 			<div class="controls">
-				<textarea id="job-majors" class="input-block-level" name="body" cols="5" rows="3" maxlength="5000"></textarea>
+				<textarea id="job-majors" class="input-block-level" name="majors" cols="5" rows="3" maxlength="5000"></textarea>
 			</div>
 		</div>
 
@@ -38,7 +38,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
 			</label>
 			<div class="controls">
-				<textarea id="job-title" class="input-block-level" name="body" cols="5" rows="1" maxlength="5000"></textarea>
+				<textarea id="job-title" class="input-block-level" name="title" cols="5" rows="1" maxlength="5000"></textarea>
 			</div>
 		</div>
 

@@ -39,13 +39,10 @@ class ComJobsDomainEntityJob extends ComMediumDomainEntityMedium
     {
         $config->append(array(
             'resources' => array('jobs_jobs'),
-            'attributes' => array('mimetype'),
-            'link' => array(
-                'column' => 'link'),
-            'majors' => array(
-                'column' => 'majors'),
-            'title' => array(
-                'column' => 'title'),
+            'attributes' => array('mimetype',
+                'link' => array('column' => 'link', ),
+                'majors' => array('column' => 'majors',),
+            ),
             'behaviors' => array(
                 'portraitable',
             ),
