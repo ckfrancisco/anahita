@@ -26,6 +26,11 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     * Allowed user types array
     */
     protected $_allowed_user_types;
+        
+    protected $_allowed_academic_types;
+    protected $_allowed_corporate_types;
+
+
 
     /*
      * Mention regex pattern
@@ -41,12 +46,15 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     const USERTYPE_SUPER_ADMINISTRATOR = 'super-administrator';
 
     /*
-     * User Values----------------- William
+     * SparqTypes----------------- William
      */
-    const USERVALUE_TEACHER="Teacher";
-    const USERVALUE_TUTOR="Tutor";
-    const USERVALUE_RECRUITER="Recruiter";
-    const USERVALUE_EMPLOYER="Employer";
+    const ACADEMICTYPE_STUDENT="student";
+    const ACADEMICTYPE_TUTOR="tutor";
+	const ACADEMICTYPE_TEACHER="teacher";
+
+	const CORPORATETYPE_NONE="none";
+    const CORPORATETYPE_RECRUITER="recruiter";
+    const CORPORATETYPE_EMPLOYER="employer";
 
     /**
      * Initializes the default configuration for the object.
@@ -79,7 +87,8 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
                     'format' => 'password'
                 ),
                 'usertype',
-                'uservalue', /* Added uservalue type ------- William */
+                'academictype', /* Added uservalue type ------- William */
+				'corporatetype',
                 'gender',
                 'lastVisitDate' => array(
                     'default' => 'date'
@@ -179,6 +188,34 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
 
         return $url;
     }
+
+
+	/**								Added uservalue type ------- William 
+     * Return the type if they are that type
+     *
+     * @return bool
+     */
+    public function Student()
+    {
+        return $this->academictype === self::ACADEMICTYPE_STUDENT;
+    }
+	public function Tutor()
+    {
+        return $this->academictype === self::ACADEMICTYPE_TUTOR;
+    }
+	public function Teacher()
+    {
+        return $this->academictype === self::ACADEMICTYPE_TEACHER;
+    {
+	public function Recruiter()
+    {
+        return $this->corporatetype === self::CORPORATETYPE_RECRUITER;
+    }
+	public function Employer()
+    {
+        return $this->corporatetype === self::CORPORATETYPE_EMPLOYER;
+    }
+    
 
     /**
      * Return whether this person is a guest.

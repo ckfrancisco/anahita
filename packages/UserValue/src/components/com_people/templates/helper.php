@@ -33,7 +33,7 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
     }
 
     /**
-     * Displays selector for person usertypes.
+     * Displays selector for person academictype.
      *
      * @param array of options
      *
@@ -71,21 +71,21 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
 
 
     /**
-     * Displays selector for person uservalues. ------- copied from above and modified by William
+     * Displays selector for person corporatetype. ------- copied from above and modified by William
      *
      * @param array of options
      *
      * @return html select
      */
-    public function uservalues($options = array())
+    public function academictype($options = array())
     {
         $viewer = get_viewer();
         $options = new KConfig($options);
 
         $options->append(array(
-            'id' => 'person-userType',
-            'selected' => 'registered',
-            'name' => 'usertype',
+            'id' => 'person-academicType',
+            'selected' => 'student',
+            'name' => 'academictype',
             'class' => 'input-block-level',
         ));
 
@@ -93,19 +93,49 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
 
         unset($options->selected);
 
-        $uservalues = array(
-            ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
-            ComPeopleDomainEntityPerson::USERVALUE_TUTOR => @text('COM-PEOPLE-USERVALUE-TUTOR'),
-            ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
-            ComPeopleDomainEntityPerson::USERVALUE_EMPLOYER => @text('COM-PEOPLE-USERVALUE-EMPLOYER'),
+        $academictypes = array(
+            ComPeopleDomainEntityPerson::ACADEMICTYPE_STUDENT => @text('COM-PEOPLE-ACADEMICTYPE-STUDENT'),
+            ComPeopleDomainEntityPerson::ACADEMICTYPE_RECRUITER => @text('COM-PEOPLE-ACADEMICTYPE-TUTOR'),
+            ComPeopleDomainEntityPerson::ACADEMICTYPE_TEACHER => @text('COM-PEOPLE-ACADEMICTYPE-TEACHER'),
         );
 
         if ($viewer->superadmin()) {
-            $uservalues[ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR] = AnTranslator::_('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR');
+            $academictypes[ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR] = AnTranslator::_('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR');
         }
 
         $html = $this->getService('com:base.template.helper.html');
 
-        return $html->select($options->name, array('options' => $uservalues, 'selected' => $selected), KConfig::unbox($options));
+        return $html->select($options->name, array('options' => $academictypes, 'selected' => $selected), KConfig::unbox($options));
+    }
+
+	public function corporatetype($options = array())
+    {
+        $viewer = get_viewer();
+        $options = new KConfig($options);
+
+        $options->append(array(
+            'id' => 'person-academicType',
+            'selected' => 'student',
+            'name' => 'academictype',
+            'class' => 'input-block-level',
+        ));
+
+        $selected = $options->selected;
+
+        unset($options->selected);
+
+        $corporatetypes = array(
+            ComPeopleDomainEntityPerson::CORPORATETYPE_NONE => @text('COM-PEOPLE-CORPORATETYPE-NONE'),
+            ComPeopleDomainEntityPerson::CORPORATETYPE_RECRUITER => @text('COM-PEOPLE-CORPORATETYPE-RECRUITER'),
+            ComPeopleDomainEntityPerson::CORPORATETYPE_EMPLOYER => @text('COM-PEOPLE-CORPORATETYPE-EMPLOYER'),
+        );
+
+        if ($viewer->superadmin()) {
+            $corporatetypes[ComPeopleDomainEntityPerson::USERTYPE_SUPER_ADMINISTRATOR] = AnTranslator::_('COM-PEOPLE-USERTYPE-SUPER-ADMINISTRATOR');
+        }
+
+        $html = $this->getService('com:base.template.helper.html');
+
+        return $html->select($options->name, array('options' => $corporatetypes, 'selected' => $selected), KConfig::unbox($options));
     }
 }
