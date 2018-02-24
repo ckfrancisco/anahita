@@ -81,10 +81,21 @@
 	<? if ($item->authorize('changeUserType')): # copied code from above --- william ?>
     <div class="control-group">
         <label class="control-label" for="person-group">
-            <?= @text('COM-PEOPLE-USERVALUE'); ?>
+            <?= @text('COM-PEOPLE-ACADEMICTYPE'); ?>
         </label>
         <div class="controls">
-            <?= @helper('uservalues', array('selected' => $item->uservalues)) ?>
+            <?= @helper('academictypes', array('selected' => $item->academictype)) ?>
+        </div>
+    </div>
+    <? endif; ?>
+
+	<? if ($item->authorize('changeUserType')): # copied code from above --- william ?>
+    <div class="control-group">
+        <label class="control-label" for="person-group">
+            <?= @text('COM-PEOPLE-CORPORATETYPE'); ?>
+        </label>
+        <div class="controls">
+            <?= @helper('corporatetypes', array('selected' => $item->corporatetype)) ?>
         </div>
     </div>
     <? endif; ?>
