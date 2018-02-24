@@ -96,6 +96,25 @@
                         <?= @helper('usertypes') ?>
                     </div>
                 </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="person-academictype">
+                        <?= @text('COM-PEOPLE-ACADEMICTYPE'); ?>
+                    </label>
+                    <div class="controls">
+                        <?= @helper('academictypes') ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="person-corporatetype">
+                        <?= @text('COM-PEOPLE-CORPORATETYPE'); ?>
+                    </label>
+                    <div class="controls">
+                        <?= @helper('corporatetypes') ?>
+                    </div>
+                </div>
+
             </fieldset>
 
             <div class="form-actions">
