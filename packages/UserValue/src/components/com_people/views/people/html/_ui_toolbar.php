@@ -33,17 +33,37 @@
     <input placeholder="Filter..." type="text" name="q" class="input-large search-query" id="an-search-query" value="" size="21" maxlength="100" />
     <? if ($viewer->admin()) : ?>
     <?                                                              # copied code from above ----- william
-    $uservalues = array(
-        '' => AnTranslator::_('COM-PEOPLE-FILTER-USERVALUE'),
-        ComPeopleDomainEntityPerson::USERVALUE_TEACHER => @text('COM-PEOPLE-USERVALUE-TEACHER'),
-        ComPeopleDomainEntityPerson::USERVALUE_TUTOR => @text('COM-PEOPLE-USERVALUE-TUTOR'),
-        ComPeopleDomainEntityPerson::USERVALUE_RECRUITER => @text('COM-PEOPLE-USERVALUE-RECRUITER'),
-        ComPeopleDomainEntityPerson::USERVALUE_EMPLOYER => @text('COM-PEOPLE-USERVALUE-EMPLOYER'),
+    $academictypes = array(
+        '' => AnTranslator::_('COM-PEOPLE-FILTER-ACADEMICTYPE'),
+		ComPeopleDomainEntityPerson::ACADEMICTYPE_STUDENT => @text('COM-PEOPLE-ACADEMICTYPE-STUDENT'),
+        ComPeopleDomainEntityPerson::ACADEMICTYPE_RECRUITER => @text('COM-PEOPLE-ACADEMICTYPE-TUTOR'),
+        ComPeopleDomainEntityPerson::ACADEMICTYPE_TEACHER => @text('COM-PEOPLE-ACADEMICTYPE-TEACHER'),
     );
     $html = $this->getService('com:base.template.helper.html');
     ?>
     
-    <?= $html->select('filter[uservalue]', array('options' => $uservalues)) ?>
+    <?= $html->select('filter[$academictype]', array('options' => $academictypes)) ?>
+    <label class="checkbox">
+        <input type="checkbox" name="filter[disabled]">
+        <?= @text('COM-PEOPLE-FILTER-DISABLED') ?>
+    </label>
+    <? endif; ?>
+</form>
+
+<form action="<?= @route('layout=list') ?>" id="an-filterbox" class="an-filterbox form-inline" name="an-filterbox" method="get">
+    <input placeholder="Filter..." type="text" name="q" class="input-large search-query" id="an-search-query" value="" size="21" maxlength="100" />
+    <? if ($viewer->admin()) : ?>
+    <?                                                              # copied code from above ----- william
+    $corporatetypes = array(
+        '' => AnTranslator::_('COM-PEOPLE-FILTER-ACADEMICTYPE'),
+		ComPeopleDomainEntityPerson::CORPORATETYPE_NONE => @text('COM-PEOPLE-CORPORATETYPE-NONE'),
+        ComPeopleDomainEntityPerson::CORPORATETYPE_RECRUITER => @text('COM-PEOPLE-CORPORATETYPE-RECRUITER'),
+        ComPeopleDomainEntityPerson::CORPORATETYPE_EMPLOYER => @text('COM-PEOPLE-CORPORATETYPE-EMPLOYER'),
+    );
+    $html = $this->getService('com:base.template.helper.html');
+    ?>
+    
+    <?= $html->select('filter[$corporatetype]', array('options' => $corporatetypes)) ?>
     <label class="checkbox">
         <input type="checkbox" name="filter[disabled]">
         <?= @text('COM-PEOPLE-FILTER-DISABLED') ?>
