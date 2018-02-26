@@ -20,7 +20,7 @@ stem_mjr = ["biochemistry", "bioengineering", "biology", "chemical engineering",
 social_sciences_mjr = ["anthropology", "criminal justice", "human development",
                        "political science", "women's studies", "sociology"]
 
-# calculates the distance between two geopraphical coordinates
+# calculates the distance between two geographical coordinates
 def compute_distance(lat_one, lon_one, lat_two, lon_two):
         earthRadiusMiles = 3959
         
@@ -37,8 +37,8 @@ def compute_distance(lat_one, lon_one, lat_two, lon_two):
         
         return earthRadiusMiles * c
 
-# calculates the distance between two locations
-# uses the Google Maps API to retrieve geographical information
+# calculates the distance between two locations.
+# uses the Google Maps API to retrieve geographical information.
 # example input (addresses, cities, states, landmarks)
 def compute_location_distance(loc_one, loc_two):
         geo_one = gmaps.geocode(loc_one)
@@ -63,8 +63,10 @@ def hamming_distance(string_one, string_two):
 def user_comparability(u_1, u_2):
         scores = {}
         for (k_1, v_1), (k_2, v_2) in zip (u_1.items(), u_2.items()):
-                if (k_1 == "city" and k_2 == "city"):
-                        scores["city"] = compare_locations(v_1, v_2)
+                if (k_1 == "location" and k_2 == "location"):
+                        scores["location"] = compare_locations(v_1, v_2)
+                elif (k_1 == "classes" and k_2 == "classes"):
+                        scores["classes"] = compare_classes(v_1, v_2)
                 elif (k_1 == "major" and k_2 == "major"):
                         scores["major"] = compare_majors(v_1, v_2)
                 elif (k_1 == "university" and k_2 == "university"):
@@ -118,20 +120,53 @@ def compare_locations(loc_one, loc_two):
         else:
                 score += 3
 
-        print("Loc score = " + str(score))
+        print("Loc score = " + str(loc_weight * score))
         
         return loc_weight * score
 
-# determines the comparability between the classes
-# of two users.
-def compare_classes(class_one, class_two):
+# determines the comparability between the class schedules of
+# two users. assumes parameters in the form
+# ["ClassID ClassNumber"] (e.g. ["CptS 421", "CptS 423"])
+def compare_classes(classes_one, classes_two):
         score = 0
-        classes_weight = 4
+        
+        # convert each course in the lists to lowercase
+        classes_one = [c.lower() for c in classes_one]
+        classes_two = [c.lower() for c in classes_two]
 
-        if (class_one == class_two):    # same class
-                score += 0
+        # sort the lists
+        classes_one.sort()
+        classes_two.sort()
 
-        return classes_weight * score
+        for c1 in classes_one:
+                for c2 in classes_two:
+                        # parse the class id and class number
+                        # output = (["CptS", "423"])
+                        # index 0 = classID, index 1 = classNum
+                        c_one_list = c1.split(" ")
+                        c_two_list = c2.split(" ")
+
+                        if (c_one_list[0] == c_two_list[0]):    # same class ID
+                                # calculate the difference in class numbers
+                                difference = abs(int(c_two_list[1]) - int(c_one_list[1]))
+                                
+                                if (difference == 0):           # same class
+                                        score += 0
+                                elif (difference <= 100):       # same year/one year apart
+                                        score += 1
+                                elif (difference <= 200):       # two years apart
+                                        score += 2
+                                elif (difference <= 300):       # three years apart
+                                        score += 3
+                                else:
+                                        score += 4
+                        # different class IDs
+                        else:
+                                score += 4
+
+        print("Class score = " + str(score))
+
+        return score
 
 # determines the comparability between the majors
 # of two users. uses the lists of majors to calculate
@@ -156,7 +191,7 @@ def compare_majors(maj_one, maj_two):
         else:
                 score += 2
 
-        print("Major score = " + str(score))
+        print("Major score = " + str(major_weight * score))
         
         return major_weight * score
 
@@ -180,7 +215,7 @@ def compare_universities(uni_one, uni_two):
         else:
                 score += 4
 
-        print("Uni score = " + str(score))
+        print("Uni score = " + str(uni_weight * score))
         
         return uni_weight * score
 
@@ -195,11 +230,16 @@ def compare_interests(inter_one, inter_two):
         return interests_weight * score
         
 if __name__ == '__main__':
-    user_one = {"age": 20, "city": "Pullman",
+    user_one = {"age": 20,
+                "location": "Pullman, WA",
                 "university": "Washington State University",
-                "major": "Computer Science"}
-    user_two = {"age": 21, "city": "Moscow",
+                "major": "Computer Science",
+                "classes": ["CptS 423", "CptS 451", "CptS 471"]}
+    
+    user_two = {"age": 21,
+                "location": "Moscow, ID",
                 "university": "University of Idaho",
-                "major": "Electrical Engineering"}
+                "major": "Computer Science",
+                "classes": ["CptS 423", "CptS 223", "CptS 451"]}
 
     print("Score = " + str(user_comparability(user_one, user_two)))
