@@ -20,6 +20,20 @@ stem_mjr = ["biochemistry", "bioengineering", "biology", "chemical engineering",
 social_sciences_mjr = ["anthropology", "criminal justice", "human development",
                        "political science", "women's studies", "sociology"]
 
+#########################################################################################
+
+active_hobb = ["fishing", "walking", "exercise", "hunting", "team sports", "golf",
+               "bicycling", "hiking", "swimming", "camping", "skiing", "bowling"
+               "running", "dancing", "horseback riding", "tennis"]
+
+outdoor_hobb = ["gardening", "traveling", "eating out", "working on cars", "boating",
+                "motorcycling", "beach"]
+
+indoor_hobb = ["reading", "watching tv", "family time", "computer", "listening to music",
+               "entertaining", "shopping", "sleeping", "sewing", "relaxing", "playing music",
+               "housework", "crafts", "watching sports", "playing cards", "cooking",
+               "writing", "painting", "theater"]
+
 # calculates the distance between two geographical coordinates
 def compute_distance(lat_one, lon_one, lat_two, lon_two):
         earthRadiusMiles = 3959
@@ -71,6 +85,8 @@ def user_comparability(u_1, u_2):
                         scores["major"] = compare_majors(v_1, v_2)
                 elif (k_1 == "university" and k_2 == "university"):
                         scores["university"] = compare_universities(v_1, v_2)
+                elif (k_1 == "interests" and k_2 == "interests"):
+                        scores["interests"] = compare_interests(v_1, v_2)
                 elif (k_1 == "age" and k_2 == "age"):
                         scores["age"] = compare_age(v_1, v_2)
 
@@ -134,35 +150,24 @@ def compare_classes(classes_one, classes_two):
         classes_one = [c.lower() for c in classes_one]
         classes_two = [c.lower() for c in classes_two]
 
-        # sort the lists
-        classes_one.sort()
-        classes_two.sort()
-
         for c1 in classes_one:
-                for c2 in classes_two:
-                        # parse the class id and class number
-                        # output = (["CptS", "423"])
-                        # index 0 = classID, index 1 = classNum
-                        c_one_list = c1.split(" ")
-                        c_two_list = c2.split(" ")
+                # check if taking the same class
+                if c1 in classes_two:
+                        score += 0
+                # check if classID matches
+                else:
+                        for c2 in classes_two:
+                                # parse the class id and class number
+                                # output = (["CptS", "423"])
+                                # index 0 = classID, index 1 = classNum
+                                c_one_list = c1.split(" ")
+                                c_two_list = c2.split(" ")
 
-                        if (c_one_list[0] == c_two_list[0]):    # same class ID
-                                # calculate the difference in class numbers
-                                difference = abs(int(c_two_list[1]) - int(c_one_list[1]))
-                                
-                                if (difference == 0):           # same class
-                                        score += 0
-                                elif (difference <= 100):       # same year/one year apart
+                                # check if class ID matches
+                                if (c_one_list[0] == c_two_list[0]):
                                         score += 1
-                                elif (difference <= 200):       # two years apart
-                                        score += 2
-                                elif (difference <= 300):       # three years apart
-                                        score += 3
                                 else:
-                                        score += 4
-                        # different class IDs
-                        else:
-                                score += 4
+                                        score += 2
 
         print("Class score = " + str(score))
 
@@ -220,10 +225,32 @@ def compare_universities(uni_one, uni_two):
         return uni_weight * score
 
 # determines the comparability between the
-# interests of two users.
+# interests of two users. assumes parameters in list form.
+# uses the lists of interests to calculate a score.
 def compare_interests(inter_one, inter_two):
         score = 0
         interests_weight = 1
+
+        # convert each interest in the lists to lowercase
+        inter_one = [i.lower() for i in inter_one]
+        inter_two = [i.lower() for i in inter_two]
+
+        for iOne in inter_one:
+                # check if the same interest
+                if iOne in inter_two:
+                        score += 0
+                # check for matching categories
+                else:
+                        for iTwo in inter_two:
+                                # check if category matches
+                                if ((iOne in active_hobb and iTwo in active_hobb) or
+                                    (iOne in outdoor_hobb and iTwo in outdoor_hobb) or
+                                    (iOne in indoor_hobb and iTwo in indoor_hobb) or
+                                    (iOne in active_hobb and iTwo in outdoor_hobb) or
+                                    (iOne in outdoor_hobb and iTwo in active_hobb)):
+                                        score += 1
+                                else:
+                                        score += 2
 
         print("Interests score = " + str(score))
 
@@ -234,12 +261,14 @@ if __name__ == '__main__':
                 "location": "Pullman, WA",
                 "university": "Washington State University",
                 "major": "Computer Science",
-                "classes": ["CptS 423", "CptS 451", "CptS 471"]}
+                "classes": ["CptS 423", "CptS 451", "CptS 471"],
+                "interests": ["Hiking", "Fishing", "Camping"]}
     
     user_two = {"age": 21,
                 "location": "Moscow, ID",
                 "university": "University of Idaho",
                 "major": "Computer Science",
-                "classes": ["CptS 423", "CptS 223", "CptS 451"]}
+                "classes": ["CptS 423", "CptS 223", "Math 216"],
+                "interests": ["Golf", "Camping", "Fishing"]}
 
     print("Score = " + str(user_comparability(user_one, user_two)))
