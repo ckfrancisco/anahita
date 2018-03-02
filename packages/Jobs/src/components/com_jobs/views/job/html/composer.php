@@ -20,7 +20,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LINK') ?>
 			</label>
 			<div class="controls">
-				<textarea id="job-link" class="input-block-level" name="link" cols="5" rows="1" maxlength="5000"></textarea>
+				<input type="text" class="input-block-level" name="link" value="<?= @escape($item->link) ?>" size="50" maxlength="5000" required>
 			</div>
 		</div>
 

@@ -41,6 +41,11 @@
 			</h4>
 		<? endif; ?>
 
+		<a class="entity-title btn" href="<?= $job->link ?>">
+			<i class="icon icon-info-sign"></i>
+			Link
+		</a>
+
     	<div class="entity-description">
     	<?= @helper('text.truncate', @content(nl2br($job->description), array('exclude' => array('gist', 'video'))), array('length' => 200, 'read_more' => true, 'consider_html' => true)); ?>
     	</div>

@@ -22,6 +22,11 @@
     	</h4>
 		<? endif; ?>
 
+		<a class="entity-title btn" href="<?= $object->link ?>">
+			<i class="icon icon-info-sign"></i>
+			Link
+		</a>
+
 		<? if ($story->body) : ?>
 		<div class="entity-description">
 			<?= @content(nl2br($story->body), array('exclude' => 'gist')) ?>
