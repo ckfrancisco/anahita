@@ -1,15 +1,5 @@
 <? defined('KOOWA') or die; ?>
 
-<? if ($job->authorize('edit')) : ?>
-
-<? if (defined('ANDEBUG') && ANDEBUG) : ?>
-<script src="com_jobs/js/jobset.js" />
-<? else: ?>
-<script src="com_jobs/js/min/jobset.min.js" />
-<? endif; ?>
-
-<? endif; ?>
-
 <div class="row">
 	<div class="span8">
 	<?= @helper('ui.header') ?>
@@ -19,16 +9,6 @@
 
 	<div class="span4 visible-desktop">
     	<h4 class="block-title">
-    	<?= @text('COM-JOBS-JOB-RELATED-SETS') ?>
-    	</h4>
-
-    	<div class="block-content">
-    		<div id="sets-wrapper" data-url="<?= @route('option=com_jobs&view=sets&layout=sidebar&oid='.$actor->id) ?>" data-job="<?= $job->id ?>">
-            <?= @view('sets')->layout('sidebar')->set('sets', $job->sets) ?>
-    		</div>
-		</div>
-
-		<h4 class="block-title">
 		<?= @text('LIB-AN-META') ?>
 		</h4>
 

@@ -46,9 +46,6 @@ class ComJobsDomainEntityJob extends ComMediumDomainEntityMedium
             'behaviors' => array(
                 'portraitable',
             ),
-            'relationships' => array(
-                'sets' => array('through' => 'edge'),
-            ),
         ));
 
         parent::_initialize($config);

@@ -54,25 +54,8 @@ class ComJobsControllerJob extends ComMediumControllerDefault
      */
     protected function _actionBrowse($context)
     {
-        $this->getService('repos:jobs.set');
         $jobs = parent::_actionBrowse($context);
         $jobs->order('creationTime', 'DESC');
-
-        if ($this->exclude_set != '') {
-            $set = $this->actor->sets->fetch(array('id' => $this->exclude_set));
-
-            if (!empty($set)) {
-                $job_ids = array();
-
-                foreach ($set->jobs as $job) {
-                    $job_ids[] = $job->id;
-                }
-
-                if (count($job_ids)) {
-                    $jobs->where('job.id', '<>', $job_ids);
-                }
-            }
-        }
 
         return $jobs;
     }

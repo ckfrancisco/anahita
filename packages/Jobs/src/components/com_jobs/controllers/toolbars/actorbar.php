@@ -32,8 +32,6 @@ class ComJobsControllerToolbarActorbar extends ComMediumControllerToolbarActorba
         //create title
         if ($layout == 'upload') {
             $this->setTitle(AnTranslator::sprintf('COM-JOBS-UPLOAD-JOBS', $actor->name));
-        } elseif ($name == 'set') {
-            $this->setTitle(AnTranslator::sprintf('COM-JOBS-HEADER-ACTOR-SETS', $actor->name));
         } else {
             $this->setTitle(AnTranslator::sprintf('COM-JOBS-HEADER-ACTOR-JOBS', $actor->name));
         }
@@ -43,11 +41,5 @@ class ComJobsControllerToolbarActorbar extends ComMediumControllerToolbarActorba
             AnTranslator::_('COM-JOBS-LINKS-JOBS'),
             array('option' => 'com_jobs', 'view' => 'jobs', 'oid' => $actor->uniqueAlias),
             $name == 'job' && (in_array($layout, array('default', 'add', 'masonry'))));
-
-        if ($actor->jobs->getTotal() > 0) {
-            $this->addNavigation('sets', AnTranslator::_('COM-JOBS-LINKS-SETS'),
-            array('option' => 'com_jobs', 'view' => 'sets', 'oid' => $actor->uniqueAlias),
-            $name == 'set' && in_array($layout, array('default', 'add', 'edit')));
-        }
     }
 }
