@@ -21,34 +21,49 @@
 		</div>
 	</div>
 
-	<div class="entity-portrait-medium">
-		<? $caption = htmlspecialchars($job->title, ENT_QUOTES); ?>
-		<a data-rel="media-jobs-<?= $job->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $job->getPortraitURL('original') ?>">
-			<img alt="<?= @escape($job->title) ?>" src="<?= $job->getPortraitURL('medium') ?>" />
-		</a>
-	</div>
-
 	<div class="entity-description-wrapper">
-		<? if ($job->title): ?>
-			<h4 class="entity-title">
-				<a title="<?= @escape($job->title) ?>" href="<?= @route($job->getURL()) ?>">
-					<?= @escape($job->title) ?>
-				</a>
-			</h4>
-		<? elseif ($job->authorize('edit')) : ?>
-			<h4 class="entity-title">
-				<span class="muted"><?= @text('LIB-AN-EDITABLE-PLACEHOLDER') ?></span>
-			</h4>
+		<? if (!empty($job->title)): ?>
+		<h4 class="entity-title">
+			<a href="<?= @route($job->getURL()) ?>">
+				<?= $job->title ?>
+			</a>
+		</h4>
 		<? endif; ?>
 
-		<a class="entity-title btn" href="<?= $job->link ?>">
+		<? if (!empty($job->link)): ?>
+		<a class="entity-link btn" href="<?= $job->link ?>">
 			<i class="icon icon-info-sign"></i>
 			Link
 		</a>
+		<? endif; ?>
 
-    	<div class="entity-description">
-    	<?= @helper('text.truncate', @content(nl2br($job->description), array('exclude' => array('gist', 'video'))), array('length' => 200, 'read_more' => true, 'consider_html' => true)); ?>
-    	</div>
+		<? if (!empty($job->majors)): ?>
+		<div class="entity-title">
+			<h5>
+				Majors
+			</h5>
+			<ul>
+				<? $majors = explode("\n", $job->majors) ?>
+				<? foreach ($majors as $major) : ?>
+					<li><?= $major ?></li>
+				<? endforeach; ?>
+			</ul>
+		</div>
+		<? endif; ?>
+
+		<? if ($job->body) : ?>
+		<div class="entity-description">
+			<?= @content(nl2br($job->body), array('exclude' => 'gist')) ?>
+		</div>
+		<? endif;?>
+
+		<? if (!empty($job->filename)): ?>
+		<div class="entity-portrait-medium">
+			<a data-rel="story-<?= $job->id ?>" data-trigger="MediaViewer" title="<?= $job->title ?>" href="<?= $job->getPortraitURL('original'); ?>">
+				<img src="<?= $job->getPortraitURL('medium') ?>" />
+			</a>
+		</div>
+		<? endif; ?>
 	</div>
 
 	<div class="entity-meta">

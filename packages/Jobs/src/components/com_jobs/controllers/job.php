@@ -75,12 +75,6 @@ class ComJobsControllerJob extends ComMediumControllerDefault
 
         $exif = (function_exists('exif_read_data')) ? @exif_read_data($file['tmp_name']) : array();
 
-        if ($filesize == 0) {
-            throw new LibBaseControllerExceptionBadRequest('File is missing');
-
-            return;
-        }
-
         if ($filesize > $uploadlimit) {
             throw new LibBaseControllerExceptionBadRequest('Exceed maximum size');
 

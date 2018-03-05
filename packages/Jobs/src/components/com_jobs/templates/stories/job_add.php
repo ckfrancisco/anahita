@@ -10,57 +10,48 @@
 </data>
 <? endif;?>
 
-<? if ($type != 'notification') : ?>
 <data name="body">
-	<? if (!is_array($object)) : ?>
-		<? $caption = htmlspecialchars($object->title, ENT_QUOTES) ?>
-		<? if (!empty($object->title)): ?>
-		<h4 class="entity-title">
-    		<a href="<?= @route($object->getURL()) ?>">
-    			<?= $object->title ?>
-    		</a>
-    	</h4>
-		<? endif; ?>
-
-		<a class="entity-title btn" href="<?= $object->link ?>">
-			<i class="icon icon-info-sign"></i>
-			Link
+	<? $caption = htmlspecialchars($object->title, ENT_QUOTES) ?>
+	<? if (!empty($object->title)): ?>
+	<h4 class="entity-title">
+		<a href="<?= @route($object->getURL()) ?>">
+			<?= $object->title ?>
 		</a>
+	</h4>
+	<? endif; ?>
 
-		<? if ($story->body) : ?>
-		<div class="entity-description">
-			<?= @content(nl2br($story->body), array('exclude' => 'gist')) ?>
-		</div>
-		<? endif;?>
+	<? if (!empty($object->link)): ?>
+	<a class="entity-link btn" href="<?= $object->link ?>">
+		<i class="icon icon-info-sign"></i>
+		Link
+	</a>
+	<? endif; ?>
 
-		<div class="entity-portrait-medium">
-			<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $object->getPortraitURL('original'); ?>">
-				<img src="<?= $object->getPortraitURL('medium') ?>" />
-			</a>
-		</div>
-	<? else : ?>
-	<div class="media-grid">
-		<? foreach ($object as $i => $job) : ?>
-		<? if ($i > 12) {
-    break;
-} ?>
-		<? $caption = htmlspecialchars($job->title, ENT_QUOTES); ?>
-		<div class="entity-portrait">
-			<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $job->getPortraitURL('original') ?>">
-				<img src="<?= $job->getPortraitURL('square') ?>" />
-			</a>
-		</div>
-		<? endforeach; ?>
+	<? if (!empty($object->majors)): ?>
+	<div class="entity-title">
+		<h5>
+			Majors
+		</h5>
+		<ul>
+			<? $majors = explode("\n", $object->majors) ?>
+			<? foreach ($majors as $major) : ?>
+				<li><?= $major ?></li>
+			<? endforeach; ?>
+		</ul>
 	</div>
 	<? endif; ?>
-</data>
-<? else : ?>
-<data name="body">
-	<div>
-		<a href="<?= @route($object->getURL())?>">
+
+	<? if ($object->body) : ?>
+	<div class="entity-description">
+		<?= @content(nl2br($object->body), array('exclude' => 'gist')) ?>
+	</div>
+	<? endif;?>
+
+	<? if (!empty($object->filename)): ?>
+	<div class="entity-portrait-medium">
+		<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $object->getPortraitURL('original'); ?>">
 			<img src="<?= $object->getPortraitURL('medium') ?>" />
 		</a>
 	</div>
+	<? endif; ?>
 </data>
-<? $commands->insert('viewpost', array('label' => @text('COM-JOBS-JOB-VIEW')))->href($object->getURL())?>
-<? endif;?>

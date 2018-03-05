@@ -1,53 +1,88 @@
 <? defined('KOOWA') or die('Restricted access'); ?>
 
 <? if (defined('ANDEBUG') && ANDEBUG) : ?>
-<script  src="com_jobs/js/upload.js" />
+<script src="com_jobs/js/majors.js" />
 <? else: ?>
-<script  src="com_jobs/js/min/upload.min.js" />
+<script src="com_jobs/js/min/majors.min.js" />
 <? endif; ?>
+
+<? $job = @service('repos:jobs.job')->getEntity()->reset() ?>
 
 <div class="row">
 	<div class="span8">
 		<?= @helper('ui.header') ?>
 
 	    <div id="jobs-add">
-	    	<div class="dropzone"></div>
+			<form class="composer-form" method="post" action="<?= @route() ?>" enctype="multipart/form-data">
+				<fieldset>
+					<legend><?= @text('COM-JOBS-JOB-ADD')  ?></legend>
 
-	    	<form>
-        	    <? if ($actor->authorize('administration')) : ?>
-        		<div id="job-privacy-selector" class="control-group">
-        			<label class="control-label" for="privacy" id="privacy"><?= @text('LIB-AN-PRIVACY-FORM-LABEL') ?></label>
-        			<div class="controls">
-        				<? $entity = @service('repos:jobs.job')->getEntity()->reset() ?>
-        				<?= @helper('ui.privacy', array('entity' => $entity, 'auto_submit' => false, 'options' => $actor)) ?>
-        			</div>
-        		</div>
-                <? endif;?>
+					<div class="control-group">
+						<label class="control-label" for="job-title">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
+						</label>
+						<div class="controls">
+							<input id="job-title"class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
+						</div>
+					</div>
 
-            	<div class="form-actions">
-            	    <button class="btn" data-trigger="RemoveJobs"><?= @text('LIB-AN-ACTION-CANCEL') ?></button>
-            	    <button class="btn btn-primary" data-trigger="UploadJobs"><?= @text('LIB-AN-ACTION-UPLOAD')?></button>
-            	</div>
-            </form>
+					<div class="control-group">
+						<label class="control-label" for="job-link">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-LINK') ?>
+						</label>
+						<div class="controls">
+							<input id="job-link" class="input-block-level" type="url" name="link" rows="1" maxlength="5000"></input>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-majors">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-MAJORS') ?>
+						</label>
+						<div class="controls">
+							<textarea class="input-block-level" type="text" rows="1" maxlength="5000" id="job-majors" name="majors" style="display:none"></textarea>
+							<input class="input-block-level" type="text" rows="1" maxlength="5000"></input>
+						</div>
+						<button id="btn-add-major-input" type="button" style="width:24px">+</button>
+						<button id="btn-rem-major-input" type="button" style="width:24px">-</button>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-description">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
+						</label>
+						<div class="controls">
+							<textarea id="job-description" class="input-block-level" name="body" rows="3" maxlength="5000"></textarea>
+						</div>
+					</div>
+								
+					<div class="control-group">
+						<label class="control-label" for="job-file">
+							<?= @text('COM-JOBS-COMPOSER-FILE-SELECT') ?>
+						</label>
+						<div class="controls">
+							<input id="job-file" type="file" name="file"/>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="privacy">
+							<?= @text('LIB-AN-PRIVACY-FORM-LABEL') ?>
+						</label>
+						<div class="controls">
+							<?= @helper('ui.privacy', array('entity' => $job, 'auto_submit' => false, 'options' => $actor)) ?>
+						</div>
+					</div>
+
+				</fieldset>
+
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary" data-loading-text="<?= @text('LIB-AN-MEDIUM-POSTING') ?>">
+						<?=@text('LIB-AN-ACTION-SHARE')?>
+					</button>
+				</div>
+			</form>
         </div>
 
 	</div>
 </div>
-
-<script>
-$('#jobs-add').jobUpload({
-	filedrop : '.dropzone',
-	url : "<?= @route('view=job&format=json&oid='.$actor->id) ?>",
-	setsUrl : "<?= @route('view=sets&oid='.$actor->id.'&layout=add_jobs') ?>",
-	parallelUploads : 2,
-	maxFilesize : <?= get_config_value('jobs.uploadlimit', 4) ?>,
-	maxFiles : 10,
-	addRemoveLinks : true,
-	autoQueue: false,
-	acceptedFiles : 'image/jpeg,image/jpg,image/png,image/gif',
-	dictDefaultMessage : "<?= @text('COM-JOBS-UPLOAD-DROP-FILES-TO-UPLOAD') ?>",
-	dictInvalidFileType : "<?= @text('COM-JOBS-UPLOAD-INVALID-FILE-TYPE') ?>",
-	dictFileTooBig : "<?= sprintf(@text('COM-JOBS-UPLOAD-FILE-TOO-BIG'), get_config_value('jobs.uploadlimit', 4)) ?>",
-	dictRemoveFile : "<?= @text('LIB-AN-ACTION-REMOVE') ?>"
-});
-</script>
