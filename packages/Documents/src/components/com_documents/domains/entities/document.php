@@ -21,12 +21,12 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     /**
      * Document Size Constants.
      */
-    const SIZE_ORIGINAL = 'original';
-    const SIZE_LARGE = 'large';
-    const SIZE_MEDIUM = 'medium';
-    const SIZE_SMALL = 'small';
-    const SIZE_THUMBNAIL = 'thumbnail';
-    const SIZE_SQUARE = 'square';
+  //  const SIZE_ORIGINAL = 'original';
+  //  const SIZE_LARGE = 'large';
+  //  const SIZE_MEDIUM = 'medium';
+  //  const SIZE_SMALL = 'small';
+  //  const SIZE_THUMBNAIL = 'thumbnail';
+  //  const SIZE_SQUARE = 'square';
 
     /**
      * Initializes the default configuration for the object.

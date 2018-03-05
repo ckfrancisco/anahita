@@ -18,30 +18,38 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/anahita
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/anahita/domain/entity/default.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/domains/entities/node.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/domains/entities/medium.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/domains/entities/edge.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/document.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/edge.php';
 use PHPUnit\Framework\TestCase;
 
 // use IteratorAggregate;
 // use ArrayAccess;
 // use Countable;
 
-final class testComDocumentsDomainEntityDocument extends TestCase {
-  public function testObjectCreation() {
+final class testEdge extends TestCase {
 
-         $document = KService::get('repo:documents.document')->getEntity();
-        // $document = new ComDocumentsDomainEntityDocument (new Kconfig(
-        //   array(
-        //     'name' => 'documents',
-        //     'identifier' => 'document',
-        //     'service_identifier' => 'foo'
-        //   )
-        // ));
-
-      $this->assertNotNull($document);
+  public function testObjectCreation () {
+    $edge = KService::get('repo:documents.document')->getEdge();
+    assertNotNull($edge);
   }
 
-  public function testCorrectType() {
-    $document = KService::get('repo:documents.document')->getEntity();
+  public function testEdgeCorrectType() {
+    $edge = KService::get('repo:documents.document')->getEdge();
+    $this->assertEquals('ComDocumentsDomainEntityEdge', gettype($edge));
+  }
 
-    $this->assertEquals('ComDocumentsDomainEntityDocument', gettype($docment));
+  public function testAfterEntityInsert() {
+    $edge = KService::get('repo:documents.document')->getEdge();
+    $edge->_afterEntityInsert(new KCommandContext( array (
+      'entity' =>  KService::get('repo:documents:document')->getEntity()
+    )));
+  }
+
+  public function testAfterEntityDelete() {
+    $edge = KService::get('repo:documents.document')->getEdge();
+    $edge->_afterEntityDelete(new KCommandContext( array (
+      'entity' =>  KService::get('repo:documents:document')->getEntity()
+    )));
+  }
 }

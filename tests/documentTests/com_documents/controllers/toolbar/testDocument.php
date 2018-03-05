@@ -15,40 +15,32 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/default
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/default/base/controller/resource.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/controllers/resource.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/controllers/service.php';
+
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/vendor/nooku/libraries/koowa/inflector/inflector.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/vendor/nooku/libraries/koowa/event/subscriber/interface.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/vendor/nooku/libraries/koowa/event/subscriber/abstract.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/anahita/controller/toolbar/interface.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/anahita/controller/toolbar/abstract.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/controllers/toolbars/abstract.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/controllers/toolbars/default.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/toolbars/default.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/abstract.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/default.php';
-include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/controllers/document.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/controllers/toolbars/document.php';
 use PHPUnit\Framework\TestCase;
-use IteratorAggregate;
-use ArrayAccess;
-use Countable;
 
-final class testComDocumentsControllerDocument extends TestCase {
+final class testToolbarDocument extends TestCase {
 
-    public function testObjectCreation() {
-      $this->assertInstanceOf(
-        $document = KService::get('repo:documents:document')->getEntity()
-          //
-          // $document = new ComDocumentsControllerDocument(new Kconfig(
-          //   array(
-          //     'name' => 'documents',
-          //     'identifier' => 'document'
-          //   )
-          //   ))
-        );
-    }
+  //todo look more into creating an instance of this type
+  public function testObjectCreation() {
+    $this->assertInstanceOf(
+      $doc = new ComDocumentsControllerToolbarDocument(new Kconfig(
+         array(
+           'name' => 'documents',
+           'identifier' => 'document'
+         )
+         ))
+    );
 
-    public function testBrowse() {
-
-      $document = KService::get('repo:documents:document')->getEntity()
-
-      $this->assertNotNull($document->_actionBrowse(new KCommandContext()));
-    }
-
-    public function testAdd() {
-
-      $document = KService::get('repo:documents:document')->getEntity()
-
-      $this->assertNotNull($document->_actionAdd(new KCommandContext()));
-    }
+  }
 }
