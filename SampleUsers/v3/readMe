@@ -19,7 +19,7 @@ Setting up Selenium
 
 Using Selenium
 	Selenium Instructions are held in an HTML table format with 3 columns.
-	Columns hold the values: Command, Path, Input
+	Columns hold the values: Command, Target, Value
 	Recording instructions is a straight forward process.(you will learn as you go)
 
 	Selenium will timeout after 30 seconds of waiting for any action. 
@@ -30,3 +30,8 @@ Using Selenium
     		<td>600000</td>
     		<td>Wait 600 seconds for the page</td>
 		</tr>
+
+
+
+
+	<3 Jerdon Helgeson
