@@ -1,0 +1,32 @@
+//Notes on Selenium use
+
+Selenium is a free test harness that is effective for testing website UI.
+
+
+Setting up Selenium
+	Selenium (currently) will only run on firefox 54 and earlier.
+	A firefox 54 download can be found at filehippo.com
+		https://filehippo.com/download_firefox/75970/
+	Firefox automatically updates when connected to the internet
+		- Turn off internet connection before running firefox 54 the first time
+		- Go into Firefox 54 settings and turn off auto-update feature
+		- Then you are free to use firefox 54 without fear of it updating
+	
+	https://www.seleniumhq.org/
+	Download selenium add-on for firefox
+	(Optional)Download firebug add-on for firefox
+	
+
+Using Selenium
+	Selenium Instructions are held in an HTML table format with 3 columns.
+	Columns hold the values: Command, Path, Input
+	Recording instructions is a straight forward process.(you will learn as you go)
+
+	Selenium will timeout after 30 seconds of waiting for any action. 
+	To increase timeout wait time: 
+		add a row to html instruction table with the following format:
+		<tr>
+    		<td>setTimeout</td>
+    		<td>600000</td>
+    		<td>Wait 600 seconds for the page</td>
+		</tr>
