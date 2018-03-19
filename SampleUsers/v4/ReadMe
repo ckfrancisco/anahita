@@ -1,0 +1,9 @@
+MySql New Columns and Data Injection
+
+To insert new columns to anahita table an_people_people
+	1. You must update code in two locations
+		1. anahita/src/components/com_anahita/schemas/migrations/19.php
+		2. anahita/vendor/anahita-platform/installation/sql/schema.sql
+	2. Find the sections of Code that reference an_people_people
+	3. Insert Column names and types following the same conventions used around them
+	4. Save Changes and restart database with changes
