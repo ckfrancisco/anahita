@@ -17,7 +17,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
 			</label>
 			<div class="controls">
-				<input id="job-title"class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
+				<input id="job-title" class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
 			</div>
 		</div>
 
@@ -40,6 +40,59 @@
 			</div>
 			<button id="btn-add-major-input" type="button" style="width:24px">+</button>
 			<button id="btn-rem-major-input" type="button" style="width:24px">-</button>
+		</div>
+
+		<!-- <div class="control-group">
+			<label class="control-label" for="job-post-date">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-POST-DATE') ?>
+			</label>
+			<div class="controls">
+				<input id="job-post-date" class="input-block-level" type="text" name="postDate"></input>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="job-start-date">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
+			</label>
+			<div class="controls">
+				<input id="job-start-date" class="input-block-level" type="text" name="startDate"></input>
+			</div>
+		</div> -->
+
+		<div class="control-group">
+			<label class="control-label" for="job-location">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
+			</label>
+			<div class="controls">
+				<input id="job-location" class="input-block-level" type="text" name="location" rows="1" maxlength="5000"></input>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="job-employment">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
+			</label>
+			<div class="controls">
+				<select id="job-employment" name="employment">
+					<option selected value="1">Full-Time</option>
+					<option 		 value="0">Part-Time</option>
+					<option 		 value="-1">Internship</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="job-visa">
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
+			</label>
+			<div class="controls">
+				<select id="job-visa" name="visa">
+					<option selected value="1">U.S. Citizen</option>
+					<option 		 value="0">Green Card</option>
+					<option 		 value="-1">Work Visa</option>
+				</select>
+			</div>
 		</div>
 
 		<div class="control-group">

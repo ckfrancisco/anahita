@@ -51,7 +51,75 @@
 		</div>
 		<? endif; ?>
 
+		<? if ($job->postDate) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-POST-DATE') ?>
+		</h5>
+		<div class="entity-post-date">
+			<?= @content(nl2br($job->postDate), array('exclude' => 'gist')) ?>
+		</div>
+		<? endif;?>
+
+		<? if ($job->starDate) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
+		</h5>
+		<div>
+			<?= @content(nl2br($job->starDate), array('exclude' => 'gist')) ?>
+		</div>
+		<? endif;?>
+
+		<? if ($job->location) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
+		</h5>
+		<div>
+			<?= @content(nl2br($job->location), array('exclude' => 'gist')) ?>
+		</div>
+		<? endif;?>
+
+		<? if ($job->employment) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
+		</h5>
+		<div>
+			<?php switch($job->employment): 
+			case 1: ?>
+				<?= @content(nl2br("Full-Time"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php case 0: ?>
+				<?= @content(nl2br("Part-Time"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php case -1: ?>
+				<?= @content(nl2br("Internship"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php endswitch; ?>
+		</div>
+		<? endif;?>
+
+		<? if ($job->visa) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
+		</h5>
+		<div>
+			<?php switch($job->visa): 
+			case 1: ?>
+				<?= @content(nl2br("U.S. Citizen"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php case 0: ?>
+				<?= @content(nl2br("Green Card"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php case -1: ?>
+				<?= @content(nl2br("Work Visa"), array('exclude' => 'gist')) ?>
+			<?php break; ?>
+			<?php endswitch; ?>
+		</div>
+		<? endif;?>
+
 		<? if ($job->body) : ?>
+		<h5>
+			<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
+		</h5>
 		<div class="entity-description">
 			<?= @content(nl2br($job->body), array('exclude' => 'gist')) ?>
 		</div>

@@ -41,6 +41,13 @@ class ComJobsDomainEntityJob extends ComMediumDomainEntityMedium
             'resources' => array('jobs_jobs'),
             'attributes' => array('mimetype',
                 'link' => array('column' => 'link', ),
+                'location' => array('column' => 'location', ),
+                'employment' => array('column' => 'employment',
+                    'type' => 'integer', ),
+                'visa' => array('column' => 'visa',
+                    'type' => 'integer', ),
+                'postDate' => array('column' => 'post_date' ),
+                'startDate' => array('column' => 'start_date' ),
                 'majors' => array('column' => 'majors',),
             ),
             'behaviors' => array(
