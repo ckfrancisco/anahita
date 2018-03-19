@@ -22,12 +22,15 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/vendor/nooku/librarie
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_components/domains/entities/component.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/domains/entities/component.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/component.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/tests/loadAnahita.php';
+
 use PHPUnit\Framework\TestCase;
 
 
 final class testComDocumentsDomainEntityComponent  extends TestCase {
 
   public function testObjectCreation() {
+      loadFramework();
       $documentEntityComp = new ComDocumentsDomainEntityComponent(new Kconfig(
         array(
           'name' => 'documents',
@@ -39,6 +42,7 @@ final class testComDocumentsDomainEntityComponent  extends TestCase {
   }
 
   public function testSetGadgets() {
+    loadFramework();
     $documentEntityComp = new ComDocumentsDomainEntityComponent(new Kconfig(
       array(
         'name' => 'documents',

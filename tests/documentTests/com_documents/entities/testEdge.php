@@ -21,6 +21,7 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_me
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/domains/entities/edge.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/document.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/edge.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/tests/loadAnahita.php';
 use PHPUnit\Framework\TestCase;
 
 // use IteratorAggregate;
@@ -30,16 +31,19 @@ use PHPUnit\Framework\TestCase;
 final class testEdge extends TestCase {
 
   public function testObjectCreation () {
+    loadFramework();
     $edge = KService::get('repo:documents.document')->getEdge();
     assertNotNull($edge);
   }
 
   public function testEdgeCorrectType() {
+    loadFramework();
     $edge = KService::get('repo:documents.document')->getEdge();
     $this->assertEquals('ComDocumentsDomainEntityEdge', gettype($edge));
   }
 
   public function testAfterEntityInsert() {
+    loadFramework();
     $edge = KService::get('repo:documents.document')->getEdge();
     $edge->_afterEntityInsert(new KCommandContext( array (
       'entity' =>  KService::get('repo:documents:document')->getEntity()
@@ -47,6 +51,7 @@ final class testEdge extends TestCase {
   }
 
   public function testAfterEntityDelete() {
+    loadFramework();
     $edge = KService::get('repo:documents.document')->getEdge();
     $edge->_afterEntityDelete(new KCommandContext( array (
       'entity' =>  KService::get('repo:documents:document')->getEntity()

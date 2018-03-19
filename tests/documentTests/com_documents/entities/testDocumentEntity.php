@@ -19,6 +19,8 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/libraries/anahita
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_base/domains/entities/node.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/domains/entities/medium.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/domains/entities/document.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/tests/loadAnahita.php';
+
 use PHPUnit\Framework\TestCase;
 
 // use IteratorAggregate;
@@ -27,7 +29,7 @@ use PHPUnit\Framework\TestCase;
 
 final class testComDocumentsDomainEntityDocument extends TestCase {
   public function testObjectCreation() {
-
+         loadFramework();
          $document = KService::get('repo:documents.document')->getEntity();
         // $document = new ComDocumentsDomainEntityDocument (new Kconfig(
         //   array(
@@ -41,6 +43,7 @@ final class testComDocumentsDomainEntityDocument extends TestCase {
   }
 
   public function testCorrectType() {
+    loadFramework();
     $document = KService::get('repo:documents.document')->getEntity();
 
     $this->assertEquals('ComDocumentsDomainEntityDocument', gettype($docment));

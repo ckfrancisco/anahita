@@ -27,12 +27,15 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_me
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/abstract.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/default.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/controllers/toolbars/document.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/tests/loadAnahita.php';
+
 use PHPUnit\Framework\TestCase;
 
 final class testToolbarDocument extends TestCase {
 
   //todo look more into creating an instance of this type
   public function testObjectCreation() {
+    loadFramework();
     $this->assertInstanceOf(
       $doc = new ComDocumentsControllerToolbarDocument(new Kconfig(
          array(

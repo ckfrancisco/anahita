@@ -18,6 +18,8 @@ include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_ba
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/abstract.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/src/components/com_medium/controllers/default.php';
 include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/packages/Documents/src/components/com_documents/controllers/document.php';
+include '/home/peterqafoku/Documents/CPTS421/sparq/anahita/tests/loadAnahita.php';
+
 use PHPUnit\Framework\TestCase;
 use IteratorAggregate;
 use ArrayAccess;
@@ -26,6 +28,7 @@ use Countable;
 final class testComDocumentsControllerDocument extends TestCase {
 
     public function testObjectCreation() {
+      loadFramework();
       $this->assertInstanceOf(
         $document = KService::get('repo:documents:document')->getEntity()
           //
@@ -39,14 +42,14 @@ final class testComDocumentsControllerDocument extends TestCase {
     }
 
     public function testBrowse() {
-
+      loadFramework();
       $document = KService::get('repo:documents:document')->getEntity()
 
       $this->assertNotNull($document->_actionBrowse(new KCommandContext()));
     }
 
     public function testAdd() {
-
+      loadFramework();
       $document = KService::get('repo:documents:document')->getEntity()
 
       $this->assertNotNull($document->_actionAdd(new KCommandContext()));
