@@ -90,7 +90,9 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
         ."`time_zone` int(11) DEFAULT NULL,"
         ."`location` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`classes`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
-        ."`University` varchar(100) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."`major`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."`university` varchar(100) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."`interests`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`language` varchar(100) DEFAULT NULL,"
         ."`activation_code` varchar(255) DEFAULT NULL,"
         ."PRIMARY KEY (`people_person_id`),"

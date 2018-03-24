@@ -1,0 +1,4 @@
+"ballet", "dance", "film", "music", "photography", "theater", "literature", "foreign language", "philosophy", "accounting", "business administration", "finance", "entrepreneurship", "marketing", "management", "human development", "neuroscience", "nursing", "physiology", "psychology", "sport science", "biochemistry", "bioengineering", "biology", "chemical engineering",
+"microbiology", "chemistry", "computer science", "earth science",
+"material science", "mathematics", "physics", "data analytics",
+"electrical engineering", "computer engineering", "anthropology", "criminal justice", "human development", "political science", "women's studies", "sociology"
