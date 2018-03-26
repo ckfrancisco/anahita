@@ -39,7 +39,7 @@ class ComAnahitaSchemaMigration extends ComMigratorMigrationAbstract
     {
         $config->append(array(
             'tables' => array(
-                'edges', 'nodes', 'components', 'migrator_versions', 'plugins', 'sessions', 'people_people', 'classes'    /*-- Jerdon Helgeson classes --*/
+                'edges', 'nodes', 'components', 'migrator_versions', 'plugins', 'sessions', 'people_people', 'classes', 'interests'    /*-- Jerdon Helgeson classes --*/
             ),
         ));
 

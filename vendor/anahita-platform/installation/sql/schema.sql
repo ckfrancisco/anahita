@@ -217,3 +217,10 @@ CREATE TABLE `#__classes` (
     `class` varchar(50) DEFAULT NULL, 
     FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`) /*--table and column names don't need to be in quotations?--*/  
 ) ENGINE=InnoDB CHARACTER SET=utf8;  
+
+-- --------------------------------------------------------/*--Jerdon Helgeson classes--*/
+CREATE TABLE `#__interests` (    
+    `people_person_id` SERIAL, 
+    `interest` varchar(50) DEFAULT NULL, 
+    FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`) /*--table and column names don't need to be in quotations?--*/  
+) ENGINE=InnoDB CHARACTER SET=utf8; 

@@ -101,6 +101,28 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
         ."KEY `last_visit_date` (`last_visit_date`)"
         .") ENGINE=InnoDB CHARACTER SET=utf8";
         dbexec($query);
+
+
+        /*--Jerdon Helgeson classes--*/
+        dbexec('DROP TABLE IF EXISTS `#__classes`');
+
+        $query = "CREATE TABLE `#__classes` ("
+        ."`people_person_id` SERIAL,"
+        ."`class` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`),"
+        .") ENGINE=InnoDB CHARACTER SET=utf8";
+        dbexec($query);
+        
+        /*--Jerdon Helgeson interests--*/
+        dbexec('DROP TABLE IF EXISTS `#__classes`');
+
+        $query = "CREATE TABLE `#__interests` ("
+        ."`people_person_id` SERIAL,"
+        ."`interest` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`),"
+        .") ENGINE=InnoDB CHARACTER SET=utf8";
+        dbexec($query);
+
         
         $query = "INSERT INTO `#__people_people` ("
         ."`node_id`,`userid`,`username`,`usertype`,`gender`,"
