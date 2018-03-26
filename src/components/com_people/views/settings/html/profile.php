@@ -67,6 +67,8 @@
         </div>
     </div>
 
+    <!-- Add my code here -->
+
     <? if ($item->authorize('changeUserType')): ?>
     <div class="control-group">
         <label class="control-label" for="person-group">
