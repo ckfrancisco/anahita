@@ -38,7 +38,11 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
     protected function _initialize(KConfig $config)
     {
         $config->append(array(
-            'attributes' => array('mimetype'),
+            'attributes' => array(
+                'filename',
+                'filesize',
+                'mimetype',
+            ),
             'behaviors' => array(
                 'portraitable',
                 'fileable',

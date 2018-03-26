@@ -1,16 +1,26 @@
 <?php
 
-class ComDocumentsDomainBehaviorFileable extends LibBaseDomainBehaviorFileable {
+//class ComDocumentsDomainBehaviorFileable extends LibBaseDomainBehaviorFileable {
+class ComDocumentsDomainBehaviorFileable extends LibBaseDomainBehaviorStorable {
 
   protected function _initialize(KConfig $config) {
-    parent::initialize($config);
+     parent::initialize($config);
+    syslog(1,"init complete");
+
     unset($config['attributes']);
     $config->append(array (
       'attributes' => array (
           'filename',
-          'filesize',
-          'mimetype'
-        )
+          'filesize' => array(
+              'column' => 'filesize',
+              'type' => 'integer',
+              'write' => 'private'
+          ),
+          'mimeType' => array(
+              'column' => 'medium_mime_type',
+              'match' => '/\w+\/\w+/',
+              'write' => 'private'
+          ),        )
       ));
   }
 
@@ -33,11 +43,53 @@ class ComDocumentsDomainBehaviorFileable extends LibBaseDomainBehaviorFileable {
     }
   }
 
-  public function getFileContent() {
-    return $this->readData($this->filename, false);
-  }
-
   protected function _beforeEntityDelete(KCommandContext $context) {
     $this->deletePath($this->filename, false);
+  }
+
+  /**
+   * Store Data.
+   *
+   * @param array|KConfig $file
+   */
+  public function storeFile($file)
+  {
+      $filename = md5($this->id);
+      $data = file_get_contents($file->tmp_name);
+
+      if ($this->getFileName() == $this->name) {
+          $this->name = $file->name;
+      }
+
+      $file->append(array(
+          'type' => mime_content_type($file->name),
+      ));
+
+      $this->mimeType = $file->type;
+      $this->setValue('file_name', $file->name);
+      $this->fileSize = strlen($data);
+      $this->writeData($filename, $data, false);
+  }
+
+  /**
+   * Return the file content;.
+   *
+   * @return string
+   */
+  public function getFileContent()
+  {
+      $filename = md5($this->id);
+
+      return $this->readData($filename, false);
+  }
+
+  /**
+   * Return the original file name.
+   *
+   * @return string
+   */
+  public function getFileName()
+  {
+      return $this->getValue('file_name');
   }
 }

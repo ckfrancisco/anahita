@@ -27,6 +27,7 @@ class ComDocumentsDomainEntityComponent extends ComMediumDomainEntityComponent
             'behaviors' => array(
                     'scopeable' => array('class' => 'ComDocumentsDomainEntityDocument'),
                     'hashtagable' => array('class' => 'ComDocumentsDomainEntityDocument'),
+                    //'fileable' => array('class' => 'ComDocumentsDomainEntityDocument'),
                 ),
         ));
 
