@@ -49,16 +49,16 @@
 			<div class="controls">
 				<input id="job-post-date" class="input-block-level" type="text" name="postDate"></input>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="control-group">
 			<label class="control-label" for="job-start-date">
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
 			</label>
 			<div class="controls">
-				<input id="job-start-date" class="input-block-level" type="text" name="startDate"></input>
+				<input id="job-start-date" class="input-block-level" type="date" name="startDate"></input>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="control-group">
 			<label class="control-label" for="job-location">
@@ -74,11 +74,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
 			</label>
 			<div class="controls">
-				<select id="job-employment" name="employment">
-					<option selected value="1">Full-Time</option>
-					<option 		 value="0">Part-Time</option>
-					<option 		 value="-1">Internship</option>
-				</select>
+				<?= @helper('selectemployment') ?>
 			</div>
 		</div>
 
@@ -87,11 +83,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
 			</label>
 			<div class="controls">
-				<select id="job-visa" name="visa">
-					<option selected value="1">U.S. Citizen</option>
-					<option 		 value="0">Green Card</option>
-					<option 		 value="-1">Work Visa</option>
-				</select>
+				<?= @helper('selectvisa') ?>
 			</div>
 		</div>
 

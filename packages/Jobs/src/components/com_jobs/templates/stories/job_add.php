@@ -73,17 +73,7 @@
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
 	</h5>
 	<div>
-		<?php switch($object->employment): 
-		case 1: ?>
-			<?= @content(nl2br("Full-Time"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php case 0: ?>
-			<?= @content(nl2br("Part-Time"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php case -1: ?>
-			<?= @content(nl2br("Internship"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php endswitch; ?>
+		<?= @content(nl2br($object->employment), array('exclude' => 'gist')) ?>
 	</div>
 	<? endif;?>
 
@@ -92,17 +82,7 @@
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
 	</h5>
 	<div>
-		<?php switch($object->visa): 
-		case 1: ?>
-			<?= @content(nl2br("U.S. Citizen"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php case 0: ?>
-			<?= @content(nl2br("Green Card"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php case -1: ?>
-			<?= @content(nl2br("Work Visa"), array('exclude' => 'gist')) ?>
-		<?php break; ?>
-		<?php endswitch; ?>
+		<?= @content(nl2br($object->visa), array('exclude' => 'gist')) ?>
 	</div>
 	<? endif;?>
 
