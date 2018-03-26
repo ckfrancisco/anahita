@@ -198,10 +198,8 @@ CREATE TABLE `#__people_people` (
     `last_visit_date` datetime DEFAULT NULL,
     `time_zone` int(11) DEFAULT NULL,
     `location` varchar(50) DEFAULT NULL, /*--Jerdon Helgeson--*/
-    `classes`  varchar(255)DEFAULT NULL, /*--Jerdon Helgeson--*/
     `majors`  varchar(255)DEFAULT NULL, /*--Jerdon Helgeson--*/
     `university` varchar(100) DEFAULT NULL, /*--Jerdon Helgeson--*/
-    `interests`  varchar(255)DEFAULT NULL, /*--Jerdon Helgeson--*/
     `language` varchar(100) DEFAULT NULL,
     `activation_code` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`people_person_id`),

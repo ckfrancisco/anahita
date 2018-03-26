@@ -89,10 +89,8 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
         ."`last_visit_date` datetime DEFAULT NULL,"
         ."`time_zone` int(11) DEFAULT NULL,"
         ."`location` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
-        ."`classes`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`major`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`university` varchar(100) DEFAULT NULL," /*--Jerdon Helgeson--*/
-        ."`interests`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`language` varchar(100) DEFAULT NULL,"
         ."`activation_code` varchar(255) DEFAULT NULL,"
         ."PRIMARY KEY (`people_person_id`),"
@@ -103,7 +101,7 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
         ."KEY `last_visit_date` (`last_visit_date`)"
         .") ENGINE=InnoDB CHARACTER SET=utf8";
         dbexec($query);
-
+        
         $query = "INSERT INTO `#__people_people` ("
         ."`node_id`,`userid`,`username`,`usertype`,`gender`,"
         ."`email`,`given_name`,`family_name`,"
