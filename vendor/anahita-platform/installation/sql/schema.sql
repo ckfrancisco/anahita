@@ -209,3 +209,11 @@ CREATE TABLE `#__people_people` (
     UNIQUE KEY `node_id` (`node_id`),
     KEY `last_visit_date` (`last_visit_date`)
 ) ENGINE=InnoDB CHARACTER SET=utf8;
+
+
+-- --------------------------------------------------------/*--Jerdon Helgeson--*/
+CREATE TABLE `#__classes` (    
+    `people_person_id` SERIAL, 
+    `class` varchar(50) DEFAULT NULL, 
+    FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`) /*--table and column names don't need to be in quotations?--*/  
+) ENGINE=InnoDB CHARACTER SET=utf8;  
