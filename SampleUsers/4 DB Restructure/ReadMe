@@ -7,3 +7,15 @@ To insert new columns to anahita table an_people_people
 	2. Find the sections of Code that reference an_people_people
 	3. Insert Column names and types following the same conventions used around them
 	4. Save Changes and restart database with changes
+
+To create new tables in anahita (Not Working Yet)
+	You must update code in multiple locations:
+		1.anahita/src/components/com_anahita/schemas/migrations/19.php
+			-insert create table commands where appropriate
+		2.anahita/vendor/anahita-platform/installation/sql/schema.sql
+			-insert create table commands in the document in correct order
+		3.anahita/src/components/com_anahita/schemas/migrations.php
+			- add table names to tables array
+
+
+
