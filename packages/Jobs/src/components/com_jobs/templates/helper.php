@@ -9,7 +9,7 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
 
         $options->append(array(
             'id' => 'job-employment',
-            'selected' => 'Full-Time',
+            'selected' => AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME'),
             'name' => 'employment',
         ));
 
@@ -17,18 +17,18 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
 
         unset($options->selected);
 
-        $usertypes = array(
-            'Full-Time',
-            'Part-Time',
-            'Internship',
-            'Co-Op',
-            'Consulting',
-            'Contracting',
+        $employmenttypes = array(
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME') => AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME'),
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-PARTIME') => AnTranslator::_('COM-JOBS-EMPLOYMENT-PARTIME'),
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-INTERNSHIP') => AnTranslator::_('COM-JOBS-EMPLOYMENT-INTERNSHIP'),
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-COOP') => AnTranslator::_('COM-JOBS-EMPLOYMENT-COOP'),
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-CONSULTING') => AnTranslator::_('COM-JOBS-EMPLOYMENT-CONSULTING'),
+            AnTranslator::_('COM-JOBS-EMPLOYMENT-CONTRACTING') => AnTranslator::_('COM-JOBS-EMPLOYMENT-CONTRACTING'),
         );
 
         $html = $this->getService('com:base.template.helper.html');
 
-        return $html->select($options->name, array('options' => $usertypes, 'selected' => $selected), KConfig::unbox($options));
+        return $html->select($options->name, array('options' => $employmenttypes, 'selected' => $selected), KConfig::unbox($options));
     }
     public function selectvisa($options = array())
     {
@@ -37,25 +37,25 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
 
         $options->append(array(
             'id' => 'job-visa',
-            'selected' => 'Full-Time',
-            'name' => 'employment',
+            'selected' => AnTranslator::_('COM-JOBS-VISA-USCITIZEN'),
+            'name' => 'visa',
         ));
 
         $selected = $options->selected;
 
         unset($options->selected);
 
-        $usertypes = array(
-            'U.S. Citizen',
-            'Green Card',
-            'Work Visa',
-            'Student Visa',
-            'Visa Required',
-            'Other',
+        $visatypes = array(
+            AnTranslator::_('COM-JOBS-VISA-USCITIZEN') => AnTranslator::_('COM-JOBS-VISA-USCITIZEN'),
+            AnTranslator::_('COM-JOBS-VISA-GREENCARD') => AnTranslator::_('COM-JOBS-VISA-GREENCARD'),
+            AnTranslator::_('COM-JOBS-VISA-WORKVISA') => AnTranslator::_('COM-JOBS-VISA-WORKVISA'),
+            AnTranslator::_('COM-JOBS-VISA-STUDENTVISA') => AnTranslator::_('COM-JOBS-VISA-STUDENTVISA'),
+            AnTranslator::_('COM-JOBS-VISA-VISAREQUIRED') => AnTranslator::_('COM-JOBS-VISA-VISAREQUIRED'),
+            AnTranslator::_('COM-JOBS-VISA-OTHER') => AnTranslator::_('COM-JOBS-VISA-OTHER'),
         );
 
         $html = $this->getService('com:base.template.helper.html');
 
-        return $html->select($options->name, array('options' => $usertypes, 'selected' => $selected), KConfig::unbox($options));
+        return $html->select($options->name, array('options' => $visatypes, 'selected' => $selected), KConfig::unbox($options));
     }
 }

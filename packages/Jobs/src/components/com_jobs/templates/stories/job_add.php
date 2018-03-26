@@ -27,6 +27,15 @@
 	</a>
 	<? endif; ?>
 
+	<? if ($object->startDate) : ?>
+	<h5>
+		<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
+	</h5>
+	<div>
+		<?= @content(nl2br($object->startDate), array('exclude' => 'gist')) ?>
+	</div>
+	<? endif;?>
+
 	<? if (!empty($object->majors)): ?>
 	<div class="entity-title">
 		<h5>
@@ -40,24 +49,6 @@
 		</ul>
 	</div>
 	<? endif; ?>
-
-	<? if ($object->postDate) : ?>
-	<h5>
-		<?= @text('COM-JOBS-COMPOSER-JOB-POST-POST-DATE') ?>
-	</h5>
-	<div class="entity-post-date">
-		<?= @content(nl2br($object->postDate), array('exclude' => 'gist')) ?>
-	</div>
-	<? endif;?>
-
-	<? if ($object->starDate) : ?>
-	<h5>
-		<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
-	</h5>
-	<div>
-		<?= @content(nl2br($object->starDate), array('exclude' => 'gist')) ?>
-	</div>
-	<? endif;?>
 
 	<? if ($object->location) : ?>
 	<h5>

@@ -13,7 +13,7 @@
 		<?= @helper('ui.header') ?>
 
 	    <div id="jobs-add">
-			<form class="composer-form" method="post" action="<?= @route() ?>" enctype="multipart/form-data">
+			<form id="job-form" class="composer-form" method="post" action="<?= @route() ?>" enctype="multipart/form-data">
 				<fieldset>
 					<legend><?= @text('COM-JOBS-JOB-ADD')  ?></legend>
 
@@ -22,7 +22,7 @@
 							<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
 						</label>
 						<div class="controls">
-							<input id="job-title"class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
+							<input id="job-title" class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
 						</div>
 					</div>
 
@@ -32,6 +32,25 @@
 						</label>
 						<div class="controls">
 							<input id="job-link" class="input-block-level" type="url" name="link" rows="1" maxlength="5000"></input>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-start-date">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
+						</label>
+						<div class="controls">
+							<input id="job-start-date" class="input-block-level" type="text" name="startDate" rows="1" maxlength="5000" style="display:none"></input>
+							<input class="input-block-level" type="date"></input>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-location">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
+						</label>
+						<div class="controls">
+							<input id="job-location" class="input-block-level" type="text" name="location" rows="1" maxlength="5000"></input>
 						</div>
 					</div>
 
@@ -51,8 +70,37 @@
 						<label class="control-label" for="job-description">
 							<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
 						</label>
+
 						<div class="controls">
-							<textarea id="job-description" class="input-block-level" name="body" rows="3" maxlength="5000"></textarea>
+							<?= @editor(array(
+								'name' => 'body',
+								'content' => '',
+								'html' => array(
+									'maxlength' => '20000',
+									'cols' => '5',
+									'rows' => '5',
+									'class' => 'input-block-level',
+									'id' => 'job-description',
+									),
+							)); ?>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-employment">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
+						</label>
+						<div class="controls">
+							<?= @helper('selectemployment') ?>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="job-visa">
+							<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
+						</label>
+						<div class="controls">
+							<?= @helper('selectvisa') ?>
 						</div>
 					</div>
 								
