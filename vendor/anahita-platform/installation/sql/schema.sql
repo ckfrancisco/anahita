@@ -211,7 +211,7 @@ CREATE TABLE `#__people_people` (
 ) ENGINE=InnoDB CHARACTER SET=utf8;
 
 
--- --------------------------------------------------------/*--Jerdon Helgeson--*/
+-- --------------------------------------------------------/*--Jerdon Helgeson classes--*/
 CREATE TABLE `#__classes` (    
     `people_person_id` SERIAL, 
     `class` varchar(50) DEFAULT NULL, 
