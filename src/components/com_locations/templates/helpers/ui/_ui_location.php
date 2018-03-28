@@ -26,8 +26,25 @@
 <? if($entity->authorize('edit')) : ?>
 <? $selector_url = 'option=com_locations&view=locations&layout=selector&locatable_id='.$entity->id; ?>
 <div class="toolbar">
-  <button disabled class="btn btn-small" data-url="<?= @route($selector_url) ?>" data-trigger="LocationSelector" data-locatable="<?= $entity->id ?>">
-  + <?= @text('LIB-AN-ACTION-ADD-LOCATION') ?>
-  </button>
+  <!-- Edited by Alex: Only display the add location button if the user did not yet enter their location -->
+  <? if(count($entity->locations) == 0): ?>
+  	<button disabled class="btn btn-small" data-url="<?= @route($selector_url) ?>" data-trigger="LocationSelector" data-locatable="<?= $entity->id ?>">
+  	+ <?= @text('LIB-AN-ACTION-ADD-LOCATION') ?>
+  	</button>
+  <? endif; ?>
 </div>
 <? endif; ?>
+
+<!-- Added by Alex -->
+<? $top_three_suggestions = array("LeBlanc", "LeBron", "LeJames"); ?>
+
+<div class="suggestions-container">
+    <div class="span4 visible-desktop">
+        <h4 class="block-title"><?= @text('Suggestions') ?></h4>
+        <span class="suggestions">
+            <?= $top_three_suggestions[0] ?><br>
+            <?= $top_three_suggestions[1] ?><br>
+            <?= $top_three_suggestions[2] ?>
+        </span>
+    </div>
+</div>
