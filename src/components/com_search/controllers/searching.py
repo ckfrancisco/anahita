@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+import sys
+import json
 import math
 import googlemaps
 
@@ -113,7 +117,7 @@ def compare_age(a_1, a_2):
         else:
                 score += 2
 
-        print("Age score = " + str(score))
+        #print("Age score = " + str(score))
         
         return score
 
@@ -136,7 +140,7 @@ def compare_locations(loc_one, loc_two):
         else:
                 score += 3
 
-        print("Loc score = " + str(loc_weight * score))
+        #print("Loc score = " + str(loc_weight * score))
         
         return loc_weight * score
 
@@ -169,7 +173,7 @@ def compare_classes(classes_one, classes_two):
                                 else:
                                         score += 2
 
-        print("Class score = " + str(score))
+        #print("Class score = " + str(score))
 
         return score
 
@@ -196,7 +200,7 @@ def compare_majors(maj_one, maj_two):
         else:
                 score += 2
 
-        print("Major score = " + str(major_weight * score))
+        #print("Major score = " + str(major_weight * score))
         
         return major_weight * score
 
@@ -220,7 +224,7 @@ def compare_universities(uni_one, uni_two):
         else:
                 score += 4
 
-        print("Uni score = " + str(uni_weight * score))
+        #print("Uni score = " + str(uni_weight * score))
         
         return uni_weight * score
 
@@ -252,23 +256,26 @@ def compare_interests(inter_one, inter_two):
                                 else:
                                         score += 2
 
-        print("Interests score = " + str(score))
+        #print("Interests score = " + str(score))
 
         return interests_weight * score
         
 if __name__ == '__main__':
-    user_one = {"age": 20,
-                "location": "Pullman, WA",
-                "university": "Washington State University",
-                "major": "Computer Science",
-                "classes": ["CptS 423", "CptS 451", "CptS 471"],
-                "interests": ["Hiking", "Fishing", "Camping"]}
+    #user_one = {"age": 20,
+    #            "location": "Pullman, WA",
+    #            "university": "Washington State University",
+    #            "major": "Computer Science",
+    #            "classes": ["CptS 423", "CptS 451", "CptS 471"],
+    #            "interests": ["Hiking", "Fishing", "Camping"]}
     
-    user_two = {"age": 21,
-                "location": "Moscow, ID",
-                "university": "University of Idaho",
-                "major": "Computer Science",
-                "classes": ["CptS 423", "CptS 223", "Math 216"],
-                "interests": ["Golf", "Camping", "Fishing"]}
+    #user_two = {"age": 21,
+    #            "location": "Moscow, ID",
+    #            "university": "University of Idaho",
+    #            "major": "Computer Science",
+    #            "classes": ["CptS 423", "CptS 223", "Math 216"],
+    #            "interests": ["Golf", "Camping", "Fishing"]}
+
+    user_one = json.loads(sys.argv[1])
+    user_two = json.loads(sys.argv[2])
 
     print("Score = " + str(user_comparability(user_one, user_two)))

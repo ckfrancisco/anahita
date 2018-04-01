@@ -41,6 +41,34 @@
 <div class="suggestions-container">
     <div class="span4 visible-desktop">
         <h4 class="block-title"><?= @text('Suggestions') ?></h4>
+
+        <?php
+        	$user_one = array(
+    			"age" => 20,
+                "location" => "Pullman, WA",
+                "university" => "Washington State University",
+                "major" => "Computer Science",
+                "classes" => array("CptS 423", "CptS 451", "CptS 471"),
+                "interests" => array("Hiking", "Fishing", "Camping")
+			);
+
+			$user_two = array(
+				"age" => 21,
+                "location" => "Moscow, ID",
+                "university" => "University of Idaho",
+                "major" => "Computer Science",
+                "classes" => array("CptS 423", "CptS 223", "Math 216"),
+                "interests" => array("Golf", "Camping", "Fishing")
+            );
+
+            $json_user_one = escapeshellarg(json_encode($user_one));
+            $json_user_two = escapeshellarg(json_encode($user_two));
+
+            // 2>&1
+			$output = shell_exec("../src/components/com_search/controllers/searching.py $json_user_one $json_user_two");
+			echo $output;
+		?>	
+
         <span class="suggestions">
             <?= $top_three_suggestions[0] ?><br>
             <?= $top_three_suggestions[1] ?><br>
