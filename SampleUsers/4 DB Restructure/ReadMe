@@ -8,7 +8,7 @@ To insert new columns to anahita table an_people_people
 	3. Insert Column names and types following the same conventions used around them
 	4. Save Changes and restart database with changes
 
-To create new tables in anahita (Not Working Yet)
+To create new tables in anahita without packages (Not Working Yet)(NOT A PERMANENT SOLUTION)
 	You must update code in multiple locations:
 		1.anahita/src/components/com_anahita/schemas/migrations/19.php
 			-insert create table commands where appropriate
@@ -16,6 +16,12 @@ To create new tables in anahita (Not Working Yet)
 			-insert create table commands in the document in correct order
 		3.anahita/src/components/com_anahita/schemas/migrations.php
 			- add table names to tables array
+
+To create new tables in anahita with packages (Not Working Yet)(Possible Permanent Solution)
+	1. Create a new package directory in Packages
+	2. Follow package structure and include correct table Schemas
+	3. php anahita package:install yourcomponentname
+
 
 
 
