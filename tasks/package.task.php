@@ -128,6 +128,8 @@ class PackageCommand extends Command
         $output->writeLn('<info>...installing '.str_replace('com_','',$name).' component</info>');
         $component->saveEntity();
 
+        $output->writeLn($path);
+
         if ($schema && file_exists($path.'/schemas/schema.sql')) {
 
             $output->writeLn('<info>...running schema for '.str_replace('com_','',$name).' component</info>');
