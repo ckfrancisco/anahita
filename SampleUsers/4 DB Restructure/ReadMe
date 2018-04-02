@@ -21,6 +21,21 @@ To create new tables in anahita with packages (Not Working Yet)(Possible Permane
 	1. Create a new package directory in Packages
 	2. Follow package structure and include correct table Schemas
 	3. php anahita package:install yourcomponentname
+	4. To verify that it installed correctly
+		-package will be displayed in the an_components table
+		-yourcomponentname will be its own table in anahita DB
+	
+
+To Update tables in anahita (tables that already exist)
+	1. if you've added a table to the Database using a package it will be displayed within the an_components table
+	2. Remove your table
+		-Drop table tablename;
+		-php anahita package:uninstall packagename
+	3. when you update your package you need to first remove your package
+		- this is because anahita checks for the componentName in an_components if it already exists it will not add
+		- delete from an_components where name='componentName';
+	4. then re-add your updated table 
+		- php anahita package:install yourcomponentname
 
 
 
