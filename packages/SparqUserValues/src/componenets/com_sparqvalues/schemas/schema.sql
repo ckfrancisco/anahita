@@ -1,5 +1,3 @@
---------------------------------------------------------
-
 ALTER TABLE '#__sessions' ADD 'academictype' varchar(255);
 ALTER TABLE '#__sessions' ADD 'corporatetype' varchar(255);
 
