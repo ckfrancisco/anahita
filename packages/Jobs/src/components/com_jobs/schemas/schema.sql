@@ -2,7 +2,6 @@ CREATE TABLE `#__jobs_jobs` (
   `jobs_job_id` bigint(11) NOT NULL AUTO_INCREMENT,
   `node_id` bigint(11) NOT NULL,
   `link` text,
-  `startdate` varchar(16),
   `location` varchar(255),
   `employment` varchar(255),
   `visa` varchar(255),

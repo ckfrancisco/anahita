@@ -11,11 +11,10 @@
 <? endif;?>
 
 <data name="body">
-	<? $caption = htmlspecialchars($object->title, ENT_QUOTES) ?>
-	<? if (!empty($object->title)): ?>
+	<? if (!empty($object->name)): ?>
 	<h4 class="entity-title">
 		<a href="<?= @route($object->getURL()) ?>">
-			<?= $object->title ?>
+			<?= $object->name ?>
 		</a>
 	</h4>
 	<? endif; ?>
@@ -27,16 +26,16 @@
 	</a>
 	<? endif; ?>
 
-	<? if ($object->startDate) : ?>
+	<? if (!empty($object->startDate)) : ?>
 	<h5>
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
 	</h5>
 	<div>
-		<?= @content(nl2br($object->startDate), array('exclude' => 'gist')) ?>
+		<?= @date($object->startDate) ?>
 	</div>
 	<? endif;?>
 
-	<? if (!empty($object->majors)): ?>
+	<? if (!empty($object->majors)) : ?>
 	<div class="entity-title">
 		<h5>
 			<?= @text('COM-JOBS-COMPOSER-JOB-POST-MAJORS') ?>
@@ -50,7 +49,7 @@
 	</div>
 	<? endif; ?>
 
-	<? if ($object->location) : ?>
+	<? if (!empty($object->location)) : ?>
 	<h5>
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
 	</h5>
@@ -59,7 +58,7 @@
 	</div>
 	<? endif;?>
 
-	<? if ($object->employment) : ?>
+	<? if (!empty($object->employment)) : ?>
 	<h5>
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
 	</h5>
@@ -68,7 +67,7 @@
 	</div>
 	<? endif;?>
 
-	<? if ($object->visa) : ?>
+	<? if (!empty($object->visa)) : ?>
 	<h5>
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
 	</h5>
@@ -77,7 +76,7 @@
 	</div>
 	<? endif;?>
 
-	<? if ($object->body) : ?>
+	<? if (!empty($object->body)) : ?>
 	<h5>
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
 	</h5>

@@ -1,6 +1,6 @@
 <?php
 
-class ComJobsTemplateHelper extends KTemplateHelperAbstract
+class ComJobsTemplateHelper extends LibBaseTemplateHelperAbstract
 {
     public function selectemployment($options = array())
     {
@@ -9,7 +9,7 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
 
         $options->append(array(
             'id' => 'job-employment',
-            'selected' => AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME'),
+            'selected' => AnTranslator::_('COM-JOBS-EMPLOYMENT-SELECT'),
             'name' => 'employment',
         ));
 
@@ -18,6 +18,7 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
         unset($options->selected);
 
         $employmenttypes = array(
+            "" => AnTranslator::_('COM-JOBS-EMPLOYMENT-SELECT'),
             AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME') => AnTranslator::_('COM-JOBS-EMPLOYMENT-FULLTIME'),
             AnTranslator::_('COM-JOBS-EMPLOYMENT-PARTIME') => AnTranslator::_('COM-JOBS-EMPLOYMENT-PARTIME'),
             AnTranslator::_('COM-JOBS-EMPLOYMENT-INTERNSHIP') => AnTranslator::_('COM-JOBS-EMPLOYMENT-INTERNSHIP'),
@@ -37,7 +38,7 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
 
         $options->append(array(
             'id' => 'job-visa',
-            'selected' => AnTranslator::_('COM-JOBS-VISA-USCITIZEN'),
+            'selected' => AnTranslator::_('COM-JOBS-VISA-SELECT'),
             'name' => 'visa',
         ));
 
@@ -46,6 +47,7 @@ class ComJobsTemplateHelper extends KTemplateHelperAbstract
         unset($options->selected);
 
         $visatypes = array(
+            "" => AnTranslator::_('COM-JOBS-VISA-SELECT'),
             AnTranslator::_('COM-JOBS-VISA-USCITIZEN') => AnTranslator::_('COM-JOBS-VISA-USCITIZEN'),
             AnTranslator::_('COM-JOBS-VISA-GREENCARD') => AnTranslator::_('COM-JOBS-VISA-GREENCARD'),
             AnTranslator::_('COM-JOBS-VISA-WORKVISA') => AnTranslator::_('COM-JOBS-VISA-WORKVISA'),

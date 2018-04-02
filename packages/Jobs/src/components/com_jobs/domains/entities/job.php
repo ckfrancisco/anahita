@@ -41,17 +41,13 @@ class ComJobsDomainEntityJob extends ComMediumDomainEntityMedium
             'resources' => array('jobs_jobs'),
             'attributes' => array('mimetype',
                 'link' => array('column' => 'link', ),
-                'startDate' => array('column' => 'startdate', ),
+                'startDate' => array('column' => 'start_date', ),
                 'location' => array('column' => 'location', ),
                 'majors' => array('column' => 'majors',),
                 'body' => array('column' => 'body', 
                     'format' => 'html'),
                 'employment' => array('column' => 'employment', ),
                 'visa' => array('column' => 'visa', ),
-                'nodeCreatedDate' => array('column' => 'start_date', 
-                    'default' => 'date', ),
-                'nodeStartDate' => array('column' => 'created_on',
-                    'default' => 'date', ),
             ),
             'behaviors' => array(
                 'portraitable',
@@ -125,5 +121,11 @@ class ComJobsDomainEntityJob extends ComMediumDomainEntityMedium
                 }
             }
         }
+    }
+
+    public function setStartDate($date)
+    {
+        $date = AnDomainAttributeDate::getInstance()->setDate($date);
+        $this->set('startDate', $date);
     }
 }

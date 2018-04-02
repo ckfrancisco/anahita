@@ -105,6 +105,11 @@ class ComJobsControllerJob extends ComMediumControllerDefault
             ));
         }
 
+        if($data->body == "<p><br></p>")
+        {
+            $job->body = null;
+        }
+
         return $job;
     }
 }

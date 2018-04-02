@@ -35,8 +35,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
 			</label>
 			<div class="controls">
-				<input id="job-start-date" class="input-block-level" type="text" name="startDate" rows="1" maxlength="5000" style="display:none"></input>
-				<input class="input-block-level" type="date"></input>
+				<input id="job-start-date" class="input-block-level" type="date" name="startDate"></input>
 			</div>
 		</div>
 

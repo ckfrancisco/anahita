@@ -1,17 +1,15 @@
-$("#job-form").submit(convertDate);
+//$("#job-form").submit(checkValues);
 $("#job-form").submit(concatenateMajorInputs);
 $("#btn-add-major-input").on("click", addMajorInput);
 $("#btn-rem-major-input").on("click", removeMajorInput);
 
-function convertDate() {
+function checkValues() {
     debugger;
-    date = $("#job-start-date").siblings().val();
-
-    $("#job-start-date").val(date);
-
     date = $("#job-start-date").val();
+    body = $("#job-body").val();
+    employment = $("#job-employment").val();
+    visa = $("#job-visa").val();
 }
-
 
 function concatenateMajorInputs() {
     majors = "";
