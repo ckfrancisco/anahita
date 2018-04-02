@@ -1,5 +1,11 @@
 To view the detailed commits log go to https://github.com/anahitasocial/anahita/commits/master
 
+Anahita 4.3.11 Birth Release
+=============================
+1. removed assignable behavior from component entity
+1. users are now permanently logged in until they logout
+1. merged data, inflector, behaviors, view, and template from Nooku into Anahita and removed unused code.
+
 Anahita 4.3.10 Birth Release
 =============================
 1. updated plyr.io javascript library to version 2.0.18

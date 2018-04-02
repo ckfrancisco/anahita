@@ -137,7 +137,7 @@ class ComSettingsTemplateHelperUi extends ComBaseTemplateHelperUi
 
           foreach($templates as $template){
               $options[] = array(
-                'name' => KInflector::humanize($template),
+                'name' => AnInflector::humanize($template),
                 'value' => $template
               );
           }
@@ -261,8 +261,6 @@ class ComSettingsTemplateHelperUi extends ComBaseTemplateHelperUi
         $config->append(array(
           'class' => 'input-block-level'
         ));
-
-        $config->name = 'meta['.$config->name.']';
 
         return $this->_render('formfield_custom', $config);
     }
