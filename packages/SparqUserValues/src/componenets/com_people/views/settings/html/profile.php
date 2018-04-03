@@ -76,10 +76,7 @@
             <?= @helper('usertypes', array('selected' => $item->usertype)) ?>
         </div>
     </div>
-    <? endif; ?>
 
-	<!-- Copied the code from the above UserTypes menue to create the Acdemic and Corporate Dropdown Menues  -->
-	<? if ($item->authorize('changeAcademic')): ?>
 	<div class="control-group">
         <label class="control-label" for="person-academic">
             <?= @text('COM-PEOPLE-ACADEMICTYPE'); ?>
@@ -88,9 +85,7 @@
             <?= @helper('academictypes', array('selected' => $item->academictype)) ?>
         </div>
     </div>
-    <? endif; ?>
-
-	<? if ($item->authorize('changeCorporate')): ?>			
+				
 	<div class="control-group">
         <label class="control-label" for="person-corporate">
             <?= @text('COM-PEOPLE-CORPORATETYPE'); ?>
@@ -100,7 +95,6 @@
         </div>
     </div>
     <? endif; ?>
-	<!-- End == Sparq: Phase 4 ========================================== Author: Willim Boston -->
 
 	<? foreach ($profile as $header => $fields)  : ?>
 	<fieldset>

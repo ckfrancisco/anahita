@@ -2,13 +2,11 @@
   "name": "Sparq_UserValues",
   "description": "Adds Academic and Corporate account types on top of com_people",
   "type": "component", 
-  "version": "Sparq: Phase 4",
+  "version": "4.3.0",
   "homepage": "https://www.Sparqedu.com",
   "authors": [
       {
-        "name": "Team Mercury, WSU CS Senior Design",
-        "owner":"William Boston",
-        "date": "Fall 17 -> Spring 18"
+        "name": "Team Mercury, WSU CS Senior Design"
       }
   ]
 }
