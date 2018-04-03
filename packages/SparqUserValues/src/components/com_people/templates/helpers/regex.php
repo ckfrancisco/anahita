@@ -10,7 +10,7 @@
  *
  * @link       http://www.GetAnahita.com
  */
-class ComPeopleTemplateHelperRegex extends LibBaseTemplateHelperAbstract
+class ComPeopleTemplateHelperRegex extends KTemplateHelperAbstract
 {
     /**
     * email Javascript regex

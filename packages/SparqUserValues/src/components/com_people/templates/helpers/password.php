@@ -11,7 +11,7 @@
  *
  * @link       http://www.GetAnahita.com
  */
-class ComPeopleTemplateHelperPassword extends LibBaseTemplateHelperAbstract
+class ComPeopleTemplateHelperPassword extends KTemplateHelperAbstract
 {
     /**
      * Renders a password input with the validation.
