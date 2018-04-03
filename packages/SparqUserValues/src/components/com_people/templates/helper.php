@@ -12,7 +12,7 @@
  *
  * @link       http://www.GetAnahita.com
  */
-class ComPeopleTemplateHelper extends LibBaseTemplateHelperAbstract
+class ComPeopleTemplateHelper extends KTemplateHelperAbstract
 {
     /**
      * Return the list of enabled app links on an actor's profile.
