@@ -19,12 +19,12 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
      *
      * @param actor object ComActorsDomainEntityActor
      *
-     * @return array KTemplateHelperAbstract
+     * @return array LibBaseTemplateObjectContainer
      */
     public function viewerMenuLinks($actor)
     {
         $context = new KCommandContext();
-        $context->menuItems = new KTemplateHelperAbstract();
+        $context->menuItems = new LibBaseTemplateObjectContainer();
         $context->actor = $actor;
         $context->actor->components->registerEventDispatcher($this->getService('anahita:event.dispatcher'));
         $this->getService('anahita:event.dispatcher')->dispatchEvent('onMenuDisplay', $context);
