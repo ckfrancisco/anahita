@@ -94,7 +94,9 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
                 'lastVisitDate' => array(
                     'default' => 'date'
                 ),
-                'activationCode'
+                'activationCode',
+                'academictype', /* Added uservalue type ------- William */
+				'corporatetype'
             ),
             'aliases' => array(
                 'registrationDate' => 'creationTime'
