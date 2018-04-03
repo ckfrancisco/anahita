@@ -41,8 +41,7 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
     const USERTYPE_REGISTERED = 'registered';
     const USERTYPE_ADMINISTRATOR = 'administrator';
     const USERTYPE_SUPER_ADMINISTRATOR = 'super-administrator';
-
-    /*
+     /*
      * Sparq: Phase 4
      * UserValues----------------- William
      */
@@ -88,8 +87,6 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
                     'format' => 'password'
                 ),
                 'usertype',
-                'academictype', /* Added uservalue type ------- William */
-				'corporatetype',
                 'gender',
                 'lastVisitDate' => array(
                     'default' => 'date'
@@ -223,7 +220,12 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
         return $this->usertype === self::USERTYPE_SUPER_ADMINISTRATOR;
     }
 
-/** 
+    public function visited()
+    {
+        $this->lastVisitDate = AnDomainAttributeDate::getInstance();
+    }
+
+    /** 
     * Checks for sparq UserValue account types
     * return true if the user is [blah]
     *  @return bool
@@ -273,10 +275,7 @@ final class ComPeopleDomainEntityPerson extends ComActorsDomainEntityActor
         return $this->corporatetype === self::CORPORATETYPE_COMPANY;
     }
 
-    public function visited()
-    {
-        $this->lastVisitDate = AnDomainAttributeDate::getInstance();
-    }
+
 
     /**
      * Automatically sets the activation token for the user.

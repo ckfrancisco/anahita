@@ -96,7 +96,6 @@
                         <?= @helper('usertypes') ?>
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="person-academictype">
                         <?= @text('COM-PEOPLE-ACADEMICTYPE'); ?>
@@ -105,7 +104,6 @@
                         <?= @helper('academictypes') ?>
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="person-corporatetype">
                         <?= @text('COM-PEOPLE-CORPORATETYPE'); ?>

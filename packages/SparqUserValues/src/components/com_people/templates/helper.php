@@ -12,7 +12,7 @@
  *
  * @link       http://www.GetAnahita.com
  */
-class ComPeopleTemplateHelper extends KTemplateHelperAbstract
+class ComPeopleTemplateHelper extends LibBaseTemplateHelperAbstract
 {
     /**
      * Return the list of enabled app links on an actor's profile.
@@ -95,9 +95,9 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
             ComPeopleDomainEntityPerson::ACADEMICTYPE_STUDENT => AnTranslator::_('COM-PEOPLE-ACADEMICTYPE-STUDENT'),
             ComPeopleDomainEntityPerson::ACADEMICTYPE_TUTOR => AnTranslator::_('COM-PEOPLE-ACADEMICTYPE-TUTOR'),
         );
-        if ($viewer->academicadmin()) {
+        /* if ($viewer->academicadmin()) {
             $academictypes[ComPeopleDomainEntityPerson::ACADEMICTYPE_INSTRUCTOR] = AnTranslator::_('COM-PEOPLE-ACADEMICTYPE-INSTRUCTOR');
-        }
+        } */
         if ($viewer->superadmin() || $viewer->admin()) {
             $academictypes[ComPeopleDomainEntityPerson::ACADEMICTYPE_INSTRUCTOR] = AnTranslator::_('COM-PEOPLE-ACADEMICTYPE-NONE');
             $academictypes[ComPeopleDomainEntityPerson::ACADEMICTYPE_NONE] = AnTranslator::_('COM-PEOPLE-ACADEMICTYPE-INSTRUCTOR');
@@ -132,9 +132,9 @@ class ComPeopleTemplateHelper extends KTemplateHelperAbstract
             //ComPeopleDomainEntityPerson::CORPORATETYPE_MANAGER => AnTranslator::_('COM-PEOPLE-CORPORATETYPE-MANAGER'),
         );
 
-       if ($viewer->company()) {
+       /* if ($viewer->company()) {
             $corporatetypes[ComPeopleDomainEntityPerson::CORPORATETYPE_MANAGER] = AnTranslator::_('COM-PEOPLE-CORPORATETYPE-MANAGER');
-        }
+        } */
         if ($viewer->superadmin() || $viewer->admin()) {
             $corporatetypes[ComPeopleDomainEntityPerson::CORPORATETYPE_MANAGER] = AnTranslator::_('COM-PEOPLE-CORPORATETYPE-MANAGER');
             $corporatetypes[ComPeopleDomainEntityPerson::CORPORATETYPE_COMPANY] = AnTranslator::_('COM-PEOPLE-CORPORATETYPE-COMPANY');
