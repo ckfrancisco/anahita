@@ -88,9 +88,9 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
         ."`network_presence` tinyint(3) NOT NULL DEFAULT 0,"
         ."`last_visit_date` datetime DEFAULT NULL,"
         ."`time_zone` int(11) DEFAULT NULL,"
-        ."`location` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
-        ."`major`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
-        ."`university` varchar(100) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        //."`location` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        //."`major`  varchar(255)DEFAULT NULL," /*--Jerdon Helgeson--*/
+        //."`university` varchar(100) DEFAULT NULL," /*--Jerdon Helgeson--*/
         ."`language` varchar(100) DEFAULT NULL,"
         ."`activation_code` varchar(255) DEFAULT NULL,"
         ."PRIMARY KEY (`people_person_id`),"
@@ -104,24 +104,28 @@ class ComAnahitaSchemaMigration19 extends ComMigratorMigrationVersion
 
 
         /*--Jerdon Helgeson classes--*/
+        /*
         dbexec('DROP TABLE IF EXISTS `#__classes`');
 
         $query = "CREATE TABLE `#__classes` ("
         ."`people_person_id` SERIAL,"
-        ."`class` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."`class` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/ /*
         ."FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`),"
         .") ENGINE=InnoDB CHARACTER SET=utf8";
         dbexec($query);
+        */
         
         /*--Jerdon Helgeson interests--*/
-        dbexec('DROP TABLE IF EXISTS `#__classes`');
+        /*
+        dbexec('DROP TABLE IF EXISTS `#__interests`');
 
         $query = "CREATE TABLE `#__interests` ("
         ."`people_person_id` SERIAL,"
-        ."`interest` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*/
+        ."`interest` varchar(50) DEFAULT NULL," /*--Jerdon Helgeson--*//*
         ."FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`),"
         .") ENGINE=InnoDB CHARACTER SET=utf8";
         dbexec($query);
+        */
 
         
         $query = "INSERT INTO `#__people_people` ("
