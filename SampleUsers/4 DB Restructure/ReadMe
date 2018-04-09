@@ -11,7 +11,7 @@ To insert new columns to anahita table an_people_people without packages (not a 
 To insert new columns to anahita table with packages
 	...
 
-To create new tables in anahita without packages (Not Working Yet)(NOT A PERMANENT SOLUTION)
+To create new tables in anahita without packages (Semi-Functional)(NOT A PERMANENT SOLUTION)
 	You must update code in multiple locations:
 		1.anahita/src/components/com_anahita/schemas/migrations/19.php
 			-insert create table commands where appropriate
