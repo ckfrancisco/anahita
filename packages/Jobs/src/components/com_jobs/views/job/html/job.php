@@ -7,31 +7,38 @@
 <? endif; ?>
 
 	<div class="entity-description-wrapper">
-		<? if (!empty($job->title)): ?>
-		<h4 class="entity-title">
-			<a href="<?= @route($job->getURL()) ?>">
-				<?= $job->title ?>
-			</a>
-		</h4>
+	
+		<? if (!empty($job->name)): ?>
+		<div class="entity-title">
+			<h4>
+				<a href="<?= @route($job->getURL()) ?>">
+					list <?= $job->name ?>
+				</a>
+			</h4>
+		</div>
 		<? endif; ?>
 
 		<? if (!empty($job->link)): ?>
-		<a class="entity-link btn" href="<?= $job->link ?>">
-			<i class="icon icon-info-sign"></i>
-			Link
-		</a>
+		<div class="entity-title">
+			<a class="entity-link btn" href="<?= $job->link ?>">
+				<i class="icon icon-info-sign"></i>
+				Link
+			</a>
+		</div>
 		<? endif; ?>
 
-		<? if ($job->startDate) : ?>
-		<h5>
-			<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
-		</h5>
-		<div>
-			<?= @content(nl2br($job->startDate), array('exclude' => 'gist')) ?>
+		<? if (!empty($job->startDate)) : ?>
+		<div class="entity-title">
+			<h5>
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
+			</h5>
+			<div>
+				<?= date("F j Y", $job->startDate->getDate(DATE_FORMAT_UNIXTIME)) ?>
+			</div>
 		</div>
 		<? endif;?>
 
-		<? if (!empty($job->majors)): ?>
+		<? if (!empty($job->majors)) : ?>
 		<div class="entity-title">
 			<h5>
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-MAJORS') ?>
@@ -45,49 +52,60 @@
 		</div>
 		<? endif; ?>
 
-		<? if ($job->location) : ?>
-		<h5>
-			<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
-		</h5>
-		<div>
-			<?= @content(nl2br($job->location), array('exclude' => 'gist')) ?>
+		<? if (!empty($job->location)) : ?>
+		<div class="entity-title">
+			<h5>
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
+			</h5>
+			<div>
+				<?= @content(nl2br($job->location), array('exclude' => 'gist')) ?>
+			</div>
 		</div>
 		<? endif;?>
 
-		<? if ($job->employment) : ?>
-		<h5>
-			<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
-		</h5>
-		<div>
-			<?= @content(nl2br($job->employment), array('exclude' => 'gist')) ?>
+		<? if (!empty($job->employment)) : ?>
+		<div class="entity-title">
+			<h5>
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
+			</h5>
+			<div>
+				<?= @content(nl2br($job->employment), array('exclude' => 'gist')) ?>
+			</div>
 		</div>
 		<? endif;?>
 
-		<? if ($job->visa) : ?>
-		<h5>
-			<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
-		</h5>
-		<div>
-			<?= @content(nl2br($job->visa), array('exclude' => 'gist')) ?>
+		<? if (!empty($job->visa)) : ?>
+		<div class="entity-title">
+			<h5>
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
+			</h5>
+			<div>
+				<?= @content(nl2br($job->visa), array('exclude' => 'gist')) ?>
+			</div>
 		</div>
 		<? endif;?>
 
-		<? if ($job->body) : ?>
-		<h5>
-			<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
-		</h5>
-		<div class="entity-description">
-			<?= @content(nl2br($job->body), array('exclude' => 'gist')) ?>
+		<? if (!empty($job->body)) : ?>
+		<div class="entity-title">
+			<h5>
+				<?= @text('COM-JOBS-COMPOSER-JOB-POST-DESCRIPTION') ?>
+			</h5>
+			<div class="entity-description">
+				<?= @content(nl2br($job->body), array('exclude' => 'gist')) ?>
+			</div>
 		</div>
 		<? endif;?>
 
 		<? if (!empty($job->filename)): ?>
-		<div class="entity-portrait-medium">
-			<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $job->getPortraitURL('original'); ?>">
-				<img src="<?= $job->getPortraitURL('medium') ?>" />
-			</a>
+		<div class="entity-title">
+			<div class="entity-portrait-medium">
+				<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $job->getPortraitURL('original'); ?>">
+					<img src="<?= $job->getPortraitURL('medium') ?>" />
+				</a>
+			</div>
 		</div>
 		<? endif; ?>
+
 	</div>
 
 	<div class="entity-meta">

@@ -15,7 +15,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-TITLE') ?>
 			</label>
 			<div class="controls">
-				<input id="job-title" class="input-block-level" type="text" name="name" rows="1" maxlength="5000" required autofocus></input>
+				<input id="job-title" class="input-block-level" type="text" name="name" rows="1" maxlength="5000" value="<?= $job->name ?>" required autofocus></input>
 			</div>
 		</div>
 
@@ -24,7 +24,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LINK') ?>
 			</label>
 			<div class="controls">
-				<input id="job-link" class="input-block-level" type="url" name="link" rows="1" maxlength="5000"></input>
+				<input id="job-link" class="input-block-level" type="url" name="link" rows="1" maxlength="5000" value="<?= $job->link ?>"></input>
 			</div>
 		</div>
 
@@ -33,7 +33,11 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
 			</label>
 			<div class="controls">
-				<input id="job-start-date" class="input-block-level" type="date" name="startDate"></input>
+				<input id="job-start-date" class="input-block-level" type="date" name="startDate" 
+					<? if (!empty($job->startDate)): ?>
+						value="<?= date("Y-m-d", $job->startDate->getDate(DATE_FORMAT_UNIXTIME)) ?>" >
+					<? endif; ?>
+				</input>
 			</div>
 		</div>
 
@@ -42,7 +46,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-LOCATION') ?>
 			</label>
 			<div class="controls">
-				<input id="job-location" class="input-block-level" type="text" name="location" rows="1" maxlength="5000"></input>
+				<input id="job-location" class="input-block-level" type="text" name="location" rows="1" maxlength="5000" value="<?= $job->location ?>"></input>
 			</div>
 		</div>
 
@@ -52,7 +56,16 @@
 			</label>
 			<div class="controls">
 				<textarea class="input-block-level" type="text" rows="1" maxlength="5000" id="job-majors" name="majors" style="display:none"></textarea>
-				<input class="input-block-level" type="text" rows="1" maxlength="5000"></input>
+				
+				<? if (!empty($job->majors)): ?>
+					<? $majors = explode("\n", $job->majors) ?>
+					<? foreach ($majors as $major) : ?>
+						<input class="input-block-level" type="text" rows="1" maxlength="5000" value="<?= $major ?>"></input>
+					<? endforeach; ?>
+				<? else: ?>
+					<input class="input-block-level" type="text" rows="1" maxlength="5000"></input>
+				<? endif; ?>
+
 			</div>
 			<button id="btn-add-major-input" type="button" style="width:24px">+</button>
 			<button id="btn-rem-major-input" type="button" style="width:24px">-</button>
@@ -83,7 +96,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-EMPLOYMENT') ?>
 			</label>
 			<div class="controls">
-				<?= @helper('selectemployment') ?>
+				<?= @helper('selectemployment', null, $job->employment) ?>
 			</div>
 		</div>
 
@@ -92,7 +105,7 @@
 				<?= @text('COM-JOBS-COMPOSER-JOB-POST-VISA') ?>
 			</label>
 			<div class="controls">
-				<?= @helper('selectvisa') ?>
+				<?= @helper('selectvisa')?>
 			</div>
 		</div>
 					

@@ -2,14 +2,19 @@
 
 class ComJobsTemplateHelper extends LibBaseTemplateHelperAbstract
 {
-    public function selectemployment($options = array())
+    public function selectemployment($options = array(), $preselected = null)
     {
         $viewer = get_viewer();
         $options = new KConfig($options);
 
+        if(!$preselected)
+        {
+            $preselected = AnTranslator::_('COM-JOBS-EMPLOYMENT-SELECT');
+        }
+
         $options->append(array(
             'id' => 'job-employment',
-            'selected' => AnTranslator::_('COM-JOBS-EMPLOYMENT-SELECT'),
+            'selected' => $preselected,
             'name' => 'employment',
         ));
 
@@ -29,12 +34,17 @@ class ComJobsTemplateHelper extends LibBaseTemplateHelperAbstract
 
         $html = $this->getService('com:base.template.helper.html');
 
-        return $html->select($options->name, array('options' => $employmenttypes, 'selected' => $selected), KConfig::unbox($options));
+        return $html->select($options->name, array('options' => $employmenttypes, 'selected' => $preselected), KConfig::unbox($options));
     }
-    public function selectvisa($options = array())
+    public function selectvisa($options = array(), $preselected = null)
     {
         $viewer = get_viewer();
         $options = new KConfig($options);
+
+        if(!$preselected)
+        {
+            $preselected = AnTranslator::_('COM-JOBS-VISA-SELECT');
+        }
 
         $options->append(array(
             'id' => 'job-visa',

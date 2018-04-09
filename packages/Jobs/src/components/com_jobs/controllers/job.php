@@ -73,6 +73,41 @@ class ComJobsControllerJob extends ComMediumControllerDefault
         $filesize = strlen($content);
         $uploadlimit = $this->_max_upload_limit * 1024 * 1024;
 
+        if(empty($data->link))
+        {
+            unset($data->link);
+        }
+
+        if(empty($data->startDate))
+        {
+            unset($data->startDate);
+        }
+
+        if(empty($data->location))
+        {
+            unset($data->location);
+        }
+
+        if(empty($data->majors))
+        {
+            unset($data->majors);
+        }
+
+        if(empty(trim(strip_tags($data->body), " \t\n\r\0\x0B\xc2\xa0")))
+        {
+            unset($data->body);
+        }
+
+        if(empty($data->employment))
+        {
+            unset($data->employment);
+        }
+
+        if(empty($data->visa))
+        {
+            unset($data->visa);
+        }
+
         $exif = (function_exists('exif_read_data')) ? @exif_read_data($file['tmp_name']) : array();
 
         if ($filesize > $uploadlimit) {
@@ -99,16 +134,73 @@ class ComJobsControllerJob extends ComMediumControllerDefault
         $this->setItem($job);
         $this->getResponse()->status = KHttpResponse::CREATED;
 
-        if ($job->body && preg_match('/\S/', $job->body)) {
-            $context->append(array(
-                'story' => array('body' => $job->body),
-            ));
+        return $job;
+    }
+
+    protected function _actionEdit($context)
+    {
+        $data = $context->data;
+        $file = KRequest::get('files.file', 'raw');
+        $content = @file_get_contents($file['tmp_name']);
+        $filesize = strlen($content);
+        $uploadlimit = $this->_max_upload_limit * 1024 * 1024;
+
+        if(empty($data->link))
+        {
+            unset($data->link);
         }
 
-        if($data->body == "<p><br></p>")
+        if(empty($data->startDate))
         {
-            $job->body = null;
+            unset($data->startDate);
         }
+
+        if(empty($data->location))
+        {
+            unset($data->location);
+        }
+
+        if(empty($data->majors))
+        {
+            unset($data->majors);
+        }
+
+        if(empty(trim(strip_tags($data->body), " \t\n\r\0\x0B\xc2\xa0")))
+        {
+            unset($data->body);
+        }
+
+        if(empty($data->employment))
+        {
+            unset($data->employment);
+        }
+
+        if(empty($data->visa))
+        {
+            unset($data->visa);
+        }
+
+        $exif = (function_exists('exif_read_data')) ? @exif_read_data($file['tmp_name']) : array();
+
+        if ($filesize > $uploadlimit) {
+            throw new LibBaseControllerExceptionBadRequest('Exceed maximum size');
+
+            return;
+        }
+
+        $orientation = 0;
+
+        if (!empty($exif) && isset($exif['Orientation'])) {
+            $orientation = $exif['Orientation'];
+        }
+
+        $data['portrait'] = array(
+            'data' => $content,
+            'rotation' => $orientation,
+            'mimetype' => isset($file['type']) ? $file['type'] : null,
+        );
+
+        return parent::_actionEdit($context);
 
         return $job;
     }

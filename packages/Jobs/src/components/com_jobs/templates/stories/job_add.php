@@ -14,7 +14,7 @@
 	<? if (!empty($object->name)): ?>
 	<h4 class="entity-title">
 		<a href="<?= @route($object->getURL()) ?>">
-			<?= $object->name ?>
+			job_add <?= $object->name ?>
 		</a>
 	</h4>
 	<? endif; ?>
@@ -31,7 +31,7 @@
 		<?= @text('COM-JOBS-COMPOSER-JOB-POST-START-DATE') ?>
 	</h5>
 	<div>
-		<?= @date($object->startDate) ?>
+		<?= date("F j Y", $object->startDate->getDate(DATE_FORMAT_UNIXTIME)) ?>
 	</div>
 	<? endif;?>
 
