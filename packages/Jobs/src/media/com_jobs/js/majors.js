@@ -34,5 +34,4 @@ function removeMajorInput() {
         return;
 
     $("#job-majors").siblings().last().remove();
-    concatenateMajorInputs();
 }
