@@ -27,6 +27,7 @@ To create new tables in anahita with packages (Working)(Permanent Solution)
 	3. php anahita package:install yourcomponentname
 	4. To verify that it installed correctly
 		-package will be displayed in the an_components table
+			-select * from an_components
 		-yourcomponentname will be its own table in anahita DB
 	
 
