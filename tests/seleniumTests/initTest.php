@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\PHPUnit_Extensions_Selenium2TestCase;
 
 class initialTest extends PHPUnit_Extensions_Selenium2TestCase
 {
