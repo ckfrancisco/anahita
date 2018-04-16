@@ -43,30 +43,60 @@
         <h4 class="block-title"><?= @text('Suggestions') ?></h4>
 
         <?php
-        	$user_one = array(
-    			"age" => 20,
-                "location" => "Pullman, WA",
-                "university" => "Washington State University",
-                "major" => "Computer Science",
-                "classes" => array("CptS 423", "CptS 451", "CptS 471"),
-                "interests" => array("Hiking", "Fishing", "Camping")
+			$db = KService::get('anahita:database');
+        	/*$query = "SELECT user.name, location.geo_city FROM an_nodes AS user, an_nodes AS location WHERE user.id = location.created_by;";
+        	$result = $db->execute($query);
+        	$row=mysqli_fetch_row($result);
+			$stringResult = $row[2];*/
+
+			// query that retrieves the current user's location
+			// 1. Execute the query
+			// 2. Retrieve the row from the query result
+			// 3. Index the row to get the user's location
+			$current_user_query_result = $db->execute("SELECT geo_city FROM an_nodes WHERE created_by = $entity->id;");	// 1.
+			$current_user_query_result_row = mysqli_fetch_row($current_user_query_result);								// 2.
+			$current_user_city = $current_user_query_result_row[0];														// 3.
+
+			// build the array for the current user
+        	$current_user = array(
+        		"name" => $entity->name,
+                "location" => $current_user_city
 			);
 
-			$user_two = array(
-				"age" => 21,
-                "location" => "Moscow, ID",
-                "university" => "University of Idaho",
-                "major" => "Computer Science",
-                "classes" => array("CptS 423", "CptS 223", "Math 216"),
-                "interests" => array("Golf", "Camping", "Fishing")
-            );
+        	// query that retrieves the name and location of every other user
+        	// in english: retrieve the user's name and location where the user is a person, the location belongs to the user, and the user is not the current user
+        	$everyone_else_query = "SELECT user.name, location.geo_city FROM an_nodes AS user, an_nodes AS location ";
+        	$everyone_else_query .= "WHERE user.type = 'ComActorsDomainEntityActor,ComPeopleDomainEntityPerson,com:people.domain.entity.person' ";
+        	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id;";
+        	$everyone_else_query_result = $db->execute($everyone_else_query);
+        	$everyone_else_query_result_all = mysqli_fetch_all($everyone_else_query_result);
 
-            $json_user_one = escapeshellarg(json_encode($user_one));
-            $json_user_two = escapeshellarg(json_encode($user_two));
+        	// initialze the array to hold the arrays of every other person
+        	// i.e. an array of arrays in the form
+        	// [["name": "PersonName", "location": "Place"], ["name": "OtherName", "location": "OtherPlace"], ...]
+        	$everyone_else = array();
 
-            // 2>&1
-			$output = shell_exec("../src/components/com_search/controllers/searching.py $json_user_one $json_user_two");
-			echo $output;
+        	// loop through the query result
+        	for ($i = 0; $i < count($everyone_else_query_result_all); $i++)
+        	{
+        		// create the array for each person
+        		$person = array(
+        			"name" => $everyone_else_query_result_all[$i][0],
+        			"location" => $everyone_else_query_result_all[$i][1]
+        		);
+
+        		// add the array to the super array
+        		array_push($everyone_else, $person);
+        	}
+
+        	// encode the arrays to json, used to pass to the python script
+            $json_current_user = escapeshellarg(json_encode($current_user));
+            $json_everyone_else = escapeshellarg(json_encode($everyone_else));
+
+            // for debugging, append this as another parameter to the shell_exec string: 2>&1
+            // execute the python script
+			$output = shell_exec("../src/components/com_search/controllers/searching.py $json_current_user $json_everyone_else 2>&1");
+			echo($output);
 		?>	
 
         <span class="suggestions">

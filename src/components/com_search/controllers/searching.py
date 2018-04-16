@@ -275,7 +275,11 @@ if __name__ == '__main__':
     #            "classes": ["CptS 423", "CptS 223", "Math 216"],
     #            "interests": ["Golf", "Camping", "Fishing"]}
 
-    user_one = json.loads(sys.argv[1])
-    user_two = json.loads(sys.argv[2])
+    current_user = json.loads(sys.argv[1])
+    everyone_else = json.loads(sys.argv[2])
 
-    print("Score = " + str(user_comparability(user_one, user_two)))
+    for user in everyone_else:
+        for k, v in user.items():
+            print(str(v))
+
+    #print("Score = " + str(user_comparability(user_one, user_two)))
