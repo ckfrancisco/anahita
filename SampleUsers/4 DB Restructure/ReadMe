@@ -36,7 +36,7 @@ To Update tables in anahita (tables that already exist)
 	2. Remove your table from Database
 		-Drop table tablename;
 	3. Uninstall Package
-		-php anahita package:\uninstall packagename
+		-php anahita package:uninstall packagename
 	4. when you update your package you need to first remove your package from an_components Table in Database
 		- this is because anahita checks for the componentName in an_components if it already exists it will not add
 		- delete from an_components where name='componentName';
