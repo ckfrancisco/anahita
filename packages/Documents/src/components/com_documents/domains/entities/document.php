@@ -45,7 +45,7 @@ class ComDocumentsDomainEntityDocument extends ComMediumDomainEntityMedium
             ),
             'behaviors' => array(
                 'portraitable',
-                'fileable',
+                //'fileable',
             ),
             'relationships' => array(
                 'sets' => array('through' => 'edge'),
