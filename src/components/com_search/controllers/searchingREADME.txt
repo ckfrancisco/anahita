@@ -6,7 +6,7 @@ Jerdon Helgeson, Alexander Lao, Peter Qafoku
 
 searching.py documentation
 
-Last Updated: 3/4/2018
+Last Updated: 4/16/2018
 
 -- Overview --
 The searching algorithm works by comparing various attributes between two users. Each attribute is compared and given a weighted score. At the end, these scores are totaled up, and the closer the score is to zero, the more similar the two users are.
@@ -69,12 +69,12 @@ Returns - Integer representing the number of differing characters between the tw
 
 user_comparability(u_1, u_2):
 
-Determines the comparability between two users and returns the overall score. Builds up a dictionary for the scores of each attribute compared. Calls individual functions that compares specific attributes. Passes the score dictionary to the total_scores function.
+Determines the comparability between a single user and a list of other users and returns the top three compatible users with respect to the single user. Builds up a dictionary for the scores of each attribute compared. Calls individual functions that compares specific attributes. Totals the score for each user using the total_scores function. Determines the top three users using the top_three function.
 
-Parameters -	u_1 (Dictionary {string, varies}): Represents the first user.
-		u_2 (Dictionary {string, varies}): Represents the second user.
+Parameters -	u_1 (Dictionary {string : varies}): Represents the user of interest.
+		u_2 (List of Dictionaries {string : varies}): Represents the users being compared to the user of interest.
 
-Example Input -	(user_one, user_two) where
+Example Input -	(user_one, users) where
 		user_one = 
 		{"age": 20,
                 "location": "Pullman, WA",
@@ -83,17 +83,24 @@ Example Input -	(user_one, user_two) where
                 "classes": ["CptS 423", "CptS 451", "CptS 471"],
                 "interests": ["Hiking", "Fishing", "Camping"]}
     
-    		user_two = 
+    		users = [
 		{"age": 21,
                 "location": "Moscow, ID",
                 "university": "University of Idaho",
                 "major": "Computer Science",
                 "classes": ["CptS 423", "CptS 223", "Math 216"],
-                "interests": ["Golf", "Camping", "Fishing"]}
+                "interests": ["Golf", "Camping", "Fishing"]},
+		{"age": 23,
+                "location": "Spokane, WA",
+                "university": "Gonzaga University",
+                "major": "Electical Engineering",
+                "classes": ["EE 125", "EE 225", "EE 300"],
+                "interests": ["Tennis", "Watching TV", "Beach"]}
+ 		]
 
 Precondition - Keys and values must follow the same conventions.
 
-Returns - Integer representing the total score between the two users.
+Returns - List of lists with each sub-list representing one of the top three comparable users.
 
 =======================================
 
@@ -101,11 +108,38 @@ total_scores(scores):
 
 Sums up the scores in the dictionary.
 
-Parameter - scores (Dictionary {string, int}): The dictionary of scores.
+Parameter - scores (Dictionary {string : int}): The dictionary of scores.
 
 Example Input - ({"location": 3, "classes": 2, "major": 1, "university": 5})
 
 Returns - Integer representing the total score.
+
+=======================================
+
+top_three(users):
+
+Determines the top three users for a given user based on the final_score key calculated using the total_scores function.
+
+Parameter - users (List of Dictionaries {string : varies}): The list of all users being compared.
+
+Example Input - ([
+		{"age": 21,
+                "location": "Moscow, ID",
+                "university": "University of Idaho",
+                "major": "Computer Science",
+                "classes": ["CptS 423", "CptS 223", "Math 216"],
+                "interests": ["Golf", "Camping", "Fishing"],
+		"final_score": 100},
+		{"age": 23,
+                "location": "Spokane, WA",
+                "university": "Gonzaga University",
+                "major": "Electical Engineering",
+                "classes": ["EE 125", "EE 225", "EE 300"],
+                "interests": ["Tennis", "Watching TV", "Beach"],
+		"final_score": 150}
+ 		])
+
+Returns - A list of the top three users.
 
 =======================================
 

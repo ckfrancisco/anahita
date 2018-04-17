@@ -76,8 +76,8 @@ def hamming_distance(string_one, string_two):
         return sum(match_one != match_two for match_one, match_two
                    in zip(string_one, string_two))
 
-# determines the comparability between two users
-# based on their attributes
+# determines the comparability between one user and
+# the rest of the users based on their attributes
 def user_comparability(u_1, u_2):
         result = []
         scores = {}
