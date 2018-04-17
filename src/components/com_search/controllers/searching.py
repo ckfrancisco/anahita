@@ -98,6 +98,8 @@ def user_comparability(u_1, u_2):
                             scores["age"] = compare_age(v_1, v_2)
                     elif (k_2 == "alias"):
                             scores["alias"] = v_2
+                    elif (k_2 == "name"):
+                            scores["name"] = v_2
                     else: continue
             result.append(dict(scores))
 
@@ -112,7 +114,7 @@ def user_comparability(u_1, u_2):
 def total_scores(scores):
         total = 0
         for k, v in scores.items():
-            if (k != "alias"):
+            if (k != "alias" and k != "name"):
                 total += v
         return total
 
@@ -122,7 +124,8 @@ def top_three(users):
     sorted(users, key = lambda user: user["final_score"])
 
     for i in range(0, 3):
-        result.append(users[i]["alias"])
+        user_list = [users[i]["alias"], users[i]["name"]]
+        result.append(user_list)
 
     return result
 

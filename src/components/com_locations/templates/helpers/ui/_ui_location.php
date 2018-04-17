@@ -59,7 +59,7 @@
 
           	// query that retrieves the name and location of every other user
           	// in english: retrieve the user's username and location where the user is a person, the location belongs to the user, and the user is not the current user
-          	$everyone_else_query = "SELECT user.alias, location.geo_city, location.geo_state_province FROM an_nodes AS user, an_nodes AS location ";
+          	$everyone_else_query = "SELECT user.name, user.alias, location.geo_city, location.geo_state_province FROM an_nodes AS user, an_nodes AS location ";
           	$everyone_else_query .= "WHERE user.type = 'ComActorsDomainEntityActor,ComPeopleDomainEntityPerson,com:people.domain.entity.person' ";
           	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id;";
           	$everyone_else_query_result = $db->execute($everyone_else_query);
@@ -75,8 +75,9 @@
           	{
           		// create the array for each person
           		$person = array(
-          			"alias" => $everyone_else_query_result_all[$i][0],
-          			"location" => $everyone_else_query_result_all[$i][1] . ", " . $everyone_else_query_result_all[$i][2]
+                "name" => $everyone_else_query_result_all[$i][0],
+          			"alias" => $everyone_else_query_result_all[$i][1],
+          			"location" => $everyone_else_query_result_all[$i][2] . ", " . $everyone_else_query_result_all[$i][3]
           		);
 
           		// add the person array to the super array
@@ -94,9 +95,9 @@
   		  ?>	
 
         <span class="suggestions">
-            <?= $output_decoded[0] ?><br>
-            <?= $output_decoded[1] ?><br>
-            <?= $output_decoded[2] ?>
+            <a href = "index.php/people/<? echo($output_decoded[0][0]); ?>"><? echo($output_decoded[0][1]); ?></a><br>
+            <a href = "index.php/people/<? echo($output_decoded[1][0]); ?>"><? echo($output_decoded[1][1]); ?></a><br>
+            <a href = "index.php/people/<? echo($output_decoded[2][0]); ?>"><? echo($output_decoded[2][1]); ?></a>
         </span>
     </div>
 </div>
