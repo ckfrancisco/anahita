@@ -79,29 +79,52 @@ def hamming_distance(string_one, string_two):
 # determines the comparability between two users
 # based on their attributes
 def user_comparability(u_1, u_2):
+        result = []
         scores = {}
-        for (k_1, v_1), (k_2, v_2) in zip (u_1.items(), u_2.items()):
-                if (k_1 == "location" and k_2 == "location"):
-                        scores["location"] = compare_locations(v_1, v_2)
-                elif (k_1 == "classes" and k_2 == "classes"):
-                        scores["classes"] = compare_classes(v_1, v_2)
-                elif (k_1 == "major" and k_2 == "major"):
-                        scores["major"] = compare_majors(v_1, v_2)
-                elif (k_1 == "university" and k_2 == "university"):
-                        scores["university"] = compare_universities(v_1, v_2)
-                elif (k_1 == "interests" and k_2 == "interests"):
-                        scores["interests"] = compare_interests(v_1, v_2)
-                elif (k_1 == "age" and k_2 == "age"):
-                        scores["age"] = compare_age(v_1, v_2)
+        for user in u_2:
+            for (k_2, v_2) in user.items():
+                for (k_1, v_1) in u_1.items():
+                    if (k_1 == "location" and k_2 == "location"):
+                            scores["location"] = compare_locations(v_1, v_2)
+                    elif (k_1 == "classes" and k_2 == "classes"):
+                            scores["classes"] = compare_classes(v_1, v_2)
+                    elif (k_1 == "major" and k_2 == "major"):
+                            scores["major"] = compare_majors(v_1, v_2)
+                    elif (k_1 == "university" and k_2 == "university"):
+                            scores["university"] = compare_universities(v_1, v_2)
+                    elif (k_1 == "interests" and k_2 == "interests"):
+                            scores["interests"] = compare_interests(v_1, v_2)
+                    elif (k_1 == "age" and k_2 == "age"):
+                            scores["age"] = compare_age(v_1, v_2)
+                    elif (k_2 == "alias"):
+                            scores["alias"] = v_2
+                    else: continue
+            result.append(dict(scores))
 
-        return total_scores(scores)
+        for item in result:
+            item["final_score"] = total_scores(item)
+
+        top_three_suggestions = top_three(result)
+
+        return top_three_suggestions
 
 # sums up the scores dictionary
 def total_scores(scores):
         total = 0
         for k, v in scores.items():
+            if (k != "alias"):
                 total += v
-        return total 
+        return total
+
+# determines the top three users
+def top_three(users):
+    result = []
+    sorted(users, key = lambda user: user["final_score"])
+
+    for i in range(0, 3):
+        result.append(users[i]["alias"])
+
+    return result
 
 # determines the comparability between the ages of
 # two users. returns a score based on the difference
@@ -278,8 +301,4 @@ if __name__ == '__main__':
     current_user = json.loads(sys.argv[1])
     everyone_else = json.loads(sys.argv[2])
 
-    for user in everyone_else:
-        for k, v in user.items():
-            print(str(v))
-
-    #print("Score = " + str(user_comparability(user_one, user_two)))
+    print (json.dumps(user_comparability(current_user, everyone_else)))

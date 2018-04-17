@@ -36,73 +36,67 @@
 <? endif; ?>
 
 <!-- Added by Alex -->
-<? $top_three_suggestions = array("LeBlanc", "LeBron", "LeJames"); ?>
-
 <div class="suggestions-container">
     <div class="span4 visible-desktop">
         <h4 class="block-title"><?= @text('Suggestions') ?></h4>
 
         <?php
-			$db = KService::get('anahita:database');
-        	/*$query = "SELECT user.name, location.geo_city FROM an_nodes AS user, an_nodes AS location WHERE user.id = location.created_by;";
-        	$result = $db->execute($query);
-        	$row=mysqli_fetch_row($result);
-			$stringResult = $row[2];*/
+      			$db = KService::get('anahita:database');
 
-			// query that retrieves the current user's location
-			// 1. Execute the query
-			// 2. Retrieve the row from the query result
-			// 3. Index the row to get the user's location
-			$current_user_query_result = $db->execute("SELECT geo_city FROM an_nodes WHERE created_by = $entity->id;");	// 1.
-			$current_user_query_result_row = mysqli_fetch_row($current_user_query_result);								// 2.
-			$current_user_city = $current_user_query_result_row[0];														// 3.
+      			// query that retrieves the current user's location
+      			// 1. Execute the query
+      			// 2. Retrieve the row from the query result
+      			// 3. Index the row to get the user's location
+      			$current_user_query_result = $db->execute("SELECT geo_city FROM an_nodes WHERE created_by = $entity->id;");	     // 1.
+      			$current_user_query_result_row = mysqli_fetch_row($current_user_query_result);								                   // 2.
+      			$current_user_city = $current_user_query_result_row[0];														                               // 3.
 
-			// build the array for the current user
-        	$current_user = array(
-        		"name" => $entity->name,
-                "location" => $current_user_city
-			);
+      			// build the array for the current user
+          	$current_user = array(
+          		"name" => $entity->name,
+              "location" => $current_user_city
+            );
 
-        	// query that retrieves the name and location of every other user
-        	// in english: retrieve the user's name and location where the user is a person, the location belongs to the user, and the user is not the current user
-        	$everyone_else_query = "SELECT user.name, location.geo_city FROM an_nodes AS user, an_nodes AS location ";
-        	$everyone_else_query .= "WHERE user.type = 'ComActorsDomainEntityActor,ComPeopleDomainEntityPerson,com:people.domain.entity.person' ";
-        	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id;";
-        	$everyone_else_query_result = $db->execute($everyone_else_query);
-        	$everyone_else_query_result_all = mysqli_fetch_all($everyone_else_query_result);
+          	// query that retrieves the name and location of every other user
+          	// in english: retrieve the user's username and location where the user is a person, the location belongs to the user, and the user is not the current user
+          	$everyone_else_query = "SELECT user.alias, location.geo_city, location.geo_state_province FROM an_nodes AS user, an_nodes AS location ";
+          	$everyone_else_query .= "WHERE user.type = 'ComActorsDomainEntityActor,ComPeopleDomainEntityPerson,com:people.domain.entity.person' ";
+          	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id;";
+          	$everyone_else_query_result = $db->execute($everyone_else_query);
+          	$everyone_else_query_result_all = mysqli_fetch_all($everyone_else_query_result);
 
-        	// initialze the array to hold the arrays of every other person
-        	// i.e. an array of arrays in the form
-        	// [["name": "PersonName", "location": "Place"], ["name": "OtherName", "location": "OtherPlace"], ...]
-        	$everyone_else = array();
+          	// initialze the array to hold the arrays of every other person
+          	// i.e. an array of arrays in the form
+          	// [["name": "PersonName", "location": "Place"], ["name": "OtherName", "location": "OtherPlace"], ...]
+          	$everyone_else = array();
 
-        	// loop through the query result
-        	for ($i = 0; $i < count($everyone_else_query_result_all); $i++)
-        	{
-        		// create the array for each person
-        		$person = array(
-        			"name" => $everyone_else_query_result_all[$i][0],
-        			"location" => $everyone_else_query_result_all[$i][1]
-        		);
+          	// loop through the query result
+          	for ($i = 0; $i < count($everyone_else_query_result_all); $i++)
+          	{
+          		// create the array for each person
+          		$person = array(
+          			"alias" => $everyone_else_query_result_all[$i][0],
+          			"location" => $everyone_else_query_result_all[$i][1] . ", " . $everyone_else_query_result_all[$i][2]
+          		);
 
-        		// add the array to the super array
-        		array_push($everyone_else, $person);
-        	}
+          		// add the person array to the super array
+          		array_push($everyone_else, $person);
+          	}
 
-        	// encode the arrays to json, used to pass to the python script
+          	// encode the arrays to json, used to pass to the python script
             $json_current_user = escapeshellarg(json_encode($current_user));
             $json_everyone_else = escapeshellarg(json_encode($everyone_else));
 
             // for debugging, append this as another parameter to the shell_exec string: 2>&1
             // execute the python script
-			$output = shell_exec("../src/components/com_search/controllers/searching.py $json_current_user $json_everyone_else 2>&1");
-			echo($output);
-		?>	
+      			$output = shell_exec("../src/components/com_search/controllers/searching.py $json_current_user $json_everyone_else");
+      			$output_decoded = json_decode($output);
+  		  ?>	
 
         <span class="suggestions">
-            <?= $top_three_suggestions[0] ?><br>
-            <?= $top_three_suggestions[1] ?><br>
-            <?= $top_three_suggestions[2] ?>
+            <?= $output_decoded[0] ?><br>
+            <?= $output_decoded[1] ?><br>
+            <?= $output_decoded[2] ?>
         </span>
     </div>
 </div>
