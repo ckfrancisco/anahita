@@ -56,7 +56,7 @@ class ComPeopleTemplateHelper extends LibBaseTemplateHelperAbstract
         unset($options->selected);
 
         $usertypes = array(
-            ComPeopleDomainEntityPerson::USERTYPE_REGISTERED => AnTranslator::_('COM-PEOPLE-USERTYPE-REGISTERED'),
+            ComPeopleDomainEntityPerson::USERTYPE_REGISTERED => AnTranslator::_('-- Registered -- '),
             ComPeopleDomainEntityPerson::USERTYPE_ADMINISTRATOR => AnTranslator::_('COM-PEOPLE-USERTYPE-ADMINISTRATOR'),
         );
 

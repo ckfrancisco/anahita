@@ -1,0 +1,11 @@
+{
+    "type": "anahita-extension",
+    "name": "anahita/sparquservalues",
+    "keywords" : ["anahita extension"],
+    "description": "adds academic and corporate account types",
+    "extension-source" : "src",
+    "require": {
+        "php": ">=5.6",
+        "anahita/anahita": "*"
+    }
+}
