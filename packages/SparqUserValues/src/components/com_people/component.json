@@ -1,0 +1,16 @@
+{
+  "name": "com_people v2",
+  "description": "adds academic and corporate account types",
+  "type": "component",
+  "version": "4.3.0",
+  "homepage": "https://www.Sparqedu.com",
+  "copyright": [
+      "Copyright 2016 rmdStudio Inc.",
+      "Copyright 2013 Peerglobe Technology Inc."
+  ],
+  "authors": [
+      {
+        "name": "William Boston"
+      }
+  ]
+}
