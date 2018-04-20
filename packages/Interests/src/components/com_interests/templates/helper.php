@@ -5,7 +5,7 @@
  *
  * @category	Anahita
  */
-class ComInterestsTemplateHelper extends KTemplateHelperAbstract
+class ComInterestsTemplateHelper extends LibBaseTemplateHelperAbstract
 {
     /**
      * Return a priority label.
