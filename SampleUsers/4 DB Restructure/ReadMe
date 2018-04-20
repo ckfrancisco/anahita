@@ -1,0 +1,52 @@
+MySql New Columns and Data Injection
+
+To insert new columns to anahita table an_people_people without packages (not a permanent solution)
+	1. You must update code in two locations
+		1. anahita/src/components/com_anahita/schemas/migrations/19.php
+		2. anahita/vendor/anahita-platform/installation/sql/schema.sql
+	2. Find the sections of Code that reference an_people_people
+	3. Insert Column names and types following the same conventions used around them
+	4. Save Changes and restart database with changes
+
+To insert new columns to anahita table with packages
+	...
+
+To create new tables in anahita without packages (Semi-Functional)(NOT A PERMANENT SOLUTION)
+	You must update code in multiple locations:
+		1.anahita/src/components/com_anahita/schemas/migrations/19.php
+			-insert create table commands where appropriate
+		2.anahita/vendor/anahita-platform/installation/sql/schema.sql
+			-insert create table commands in the document in correct order
+		3.anahita/src/components/com_anahita/schemas/migrations.php
+			- add table names to tables array
+
+To create new tables in anahita with packages (Working)(Permanent Solution)
+		-(Use Tester Package as example)	
+	1. Create a new package directory in Packages
+	2. Follow package structure and include correct table Schemas
+	3. php anahita package:install yourcomponentname
+	4. To verify that it installed correctly
+		-package will be displayed in the an_components table
+			-select * from an_components
+		-yourcomponentname will be its own table in anahita DB
+	
+
+To Update tables in anahita (tables that already exist)
+	1. If you've added a table to the Database using a package it will be displayed within the an_components table
+	2. Remove your table from Database
+		-Drop table tablename;
+	3. Uninstall Package
+		-php anahita package:uninstall packagename
+	4. when you update your package you need to first remove your package from an_components Table in Database
+		- this is because anahita checks for the componentName in an_components if it already exists it will not add
+		- delete from an_components where name='componentName';
+	5. then re-install updated package to anahita
+		- php anahita package:install yourcomponentname
+
+
+To View Columns in Table
+	1. select column_name from information_schema.columns where table_name='nameOfTable'
+
+
+
+
