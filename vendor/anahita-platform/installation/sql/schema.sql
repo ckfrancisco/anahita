@@ -197,6 +197,9 @@ CREATE TABLE `#__people_people` (
     `network_presence` tinyint(3) NOT NULL DEFAULT 0,
     `last_visit_date` datetime DEFAULT NULL,
     `time_zone` int(11) DEFAULT NULL,
+   /* `location` varchar(50) DEFAULT NULL, --Jerdon Helgeson--*/ 
+   /* `majors`  varchar(255)DEFAULT NULL,  --Jerdon Helgeson--*/
+   /* `university` varchar(100) DEFAULT NULL, --Jerdon Helgeson--*/
     `language` varchar(100) DEFAULT NULL,
     `activation_code` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`people_person_id`),
@@ -206,3 +209,21 @@ CREATE TABLE `#__people_people` (
     UNIQUE KEY `node_id` (`node_id`),
     KEY `last_visit_date` (`last_visit_date`)
 ) ENGINE=InnoDB CHARACTER SET=utf8;
+
+
+-- --------------------------------------------------------/*--Jerdon Helgeson classes--*/
+/*
+CREATE TABLE `#__classes` (    
+    `people_person_id` SERIAL, 
+    `class` varchar(50) DEFAULT NULL, 
+    FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`) /*--table and column names don't need to be in quotations?--*/ /* 
+) ENGINE=InnoDB CHARACTER SET=utf8;  
+/*
+-- --------------------------------------------------------/*--Jerdon Helgeson classes--*/
+/*
+CREATE TABLE `#__interests` (    
+    `people_person_id` SERIAL, 
+    `interest` varchar(50) DEFAULT NULL, 
+    FOREIGN KEY('people_person_id') REFERENCES __people_people(`people_person_id`) /*--table and column names don't need to be in quotations?--*/  /*
+) ENGINE=InnoDB CHARACTER SET=utf8; 
+*/
