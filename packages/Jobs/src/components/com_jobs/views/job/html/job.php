@@ -12,7 +12,7 @@
 		<div class="entity-title">
 			<h4>
 				<a href="<?= @route($job->getURL()) ?>">
-					list <?= $job->name ?>
+					<?= $job->name ?>
 				</a>
 			</h4>
 		</div>
@@ -99,7 +99,7 @@
 		<? if (!empty($job->filename)): ?>
 		<div class="entity-title">
 			<div class="entity-portrait-medium">
-				<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $job->getPortraitURL('original'); ?>">
+				<a data-rel="story-<?= $job->id ?>" data-trigger="MediaViewer" title="<?= $job->title ?>" href="<?= $job->getPortraitURL('original'); ?>">
 					<img src="<?= $job->getPortraitURL('medium') ?>" />
 				</a>
 			</div>

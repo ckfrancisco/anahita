@@ -14,7 +14,7 @@
 	<? if (!empty($object->name)): ?>
 	<h4 class="entity-title">
 		<a href="<?= @route($object->getURL()) ?>">
-			job_add <?= $object->name ?>
+			<?= $object->name ?>
 		</a>
 	</h4>
 	<? endif; ?>
@@ -87,7 +87,7 @@
 
 	<? if (!empty($object->filename)): ?>
 	<div class="entity-portrait-medium">
-		<a data-rel="story-<?= $story->id ?>" data-trigger="MediaViewer" title="<?= $caption ?>" href="<?= $object->getPortraitURL('original'); ?>">
+		<a data-rel="story-<?= $object->id ?>" data-trigger="MediaViewer" title="<?= $object->title ?>" href="<?= $object->getPortraitURL('original'); ?>">
 			<img src="<?= $object->getPortraitURL('medium') ?>" />
 		</a>
 	</div>
