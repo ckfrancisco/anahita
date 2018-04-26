@@ -83,9 +83,7 @@
           		// add the person array to the super array
           		array_push($everyone_else, $person);
           	}
-
-            echo($everyone_else[0][0]);
-
+            
           	// encode the arrays to json, used to pass to the python script
             $json_current_user = escapeshellarg(json_encode($current_user));
             $json_everyone_else = escapeshellarg(json_encode($everyone_else));
