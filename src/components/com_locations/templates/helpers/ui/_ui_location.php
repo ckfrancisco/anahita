@@ -59,9 +59,9 @@
 
           	// query that retrieves the name and location of every other user
           	// in english: retrieve the user's username and location where the user is a person, the location belongs to the user, and the user is not the current user
-          	$everyone_else_query = "SELECT user.name, user.alias, location.geo_city, location.geo_state_province FROM an_nodes AS user, an_nodes AS location ";
+          	$everyone_else_query = "SELECT DISTINCT user.name, user.alias, location.geo_city, location.geo_state_province FROM an_nodes AS user, an_nodes AS location ";
           	$everyone_else_query .= "WHERE user.type = 'ComActorsDomainEntityActor,ComPeopleDomainEntityPerson,com:people.domain.entity.person' ";
-          	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id;";
+          	$everyone_else_query .= "AND user.id = location.created_by AND user.id <> $entity->id GROUP BY(user.name);";
           	$everyone_else_query_result = $db->execute($everyone_else_query);
           	$everyone_else_query_result_all = mysqli_fetch_all($everyone_else_query_result);
 
@@ -83,6 +83,8 @@
           		// add the person array to the super array
           		array_push($everyone_else, $person);
           	}
+
+            echo($everyone_else[0][0]);
 
           	// encode the arrays to json, used to pass to the python script
             $json_current_user = escapeshellarg(json_encode($current_user));
