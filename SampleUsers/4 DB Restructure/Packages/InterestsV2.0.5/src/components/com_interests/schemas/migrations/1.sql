@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `#__interests_interests` (
   `node_id` bigint(11) NOT NULL,
   `interest` varchar(50) DEFAULT NULL,
   `people_person_id` bigint(11) NOT NULL
-  /*`open_status_change_time` datetime,*/
-  /*`open_status_change_by` bigint(11),*/
+  `open_status_change_time` datetime,
+  `open_status_change_by` bigint(11),
   PRIMARY KEY  (`interests_interests_id`),
   UNIQUE KEY `node_id` (`node_id`)
 ) ENGINE=InnoDB CHARACTER SET `utf8` COLLATE `utf8_general_ci`;
