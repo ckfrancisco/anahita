@@ -156,8 +156,6 @@ class ComBaseDispatcherDefault extends LibBaseDispatcherComponent
     protected function _actionException(KCommandContext $context)
     {
         $viewer = get_viewer();
-        //added based on recommendation from rastins friend
-        error_log($context->data->xdebug_message);
 
         if ($viewer->guest() && $context->data instanceof LibBaseControllerExceptionUnauthorized) {
 
