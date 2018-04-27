@@ -120,10 +120,14 @@ def total_scores(scores):
 
 # determines the top three users
 def top_three(users):
+    max = 3
+    if (max < len(users)):
+        max = len(users)
+
     result = []
     sorted(users, key = lambda user: user["final_score"])
 
-    for i in range(0, 3):
+    for i in range(0, max):
         user_list = [users[i]["alias"], users[i]["name"]]
         result.append(user_list)
 
